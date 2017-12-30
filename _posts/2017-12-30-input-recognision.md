@@ -31,7 +31,7 @@ On the other side, ~~using the pawn as the input binder would be good in a scena
 
 To summarize, if we use the pawn, we will start registering keys on the input stack as soon as the pawn is possessed, this means that **all the keys we hold before possessing that pawn will need to be repressed**, and… we don’t want that, don’t we?
 
-![Keyboard smashing]({{ '/' | absolute_url }}/assets/images/per-post/memory-manager-0/carrey.gif){: .align-center}
+![Keyboard smashing]({{ '/' | absolute_url }}/assets/images/per-post/memory-manager-0/carrey.png){: .align-center}
 
 Does this mean that the controller is enough to accomplish our task? The answer is simple, no. 
 
