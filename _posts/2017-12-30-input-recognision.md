@@ -39,7 +39,7 @@ Does this mean that the controller is enough to accomplish our task? The answer 
 
 Let’s talk about persistency. Persistency is so important for us since we need to keep track of what is happening on our keyboard most of the time (aiming for all the time if possible!), we already defined the controller to be more persistent than the pawn, but… is there something that is more persistent than the controller itself and can process input all the time?
 
-The answer is yes, the game viewport! Concretely the class [UGameViewportClient] (https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Engine/UGameViewportClient/){:target="_blank"}, if we check the documentation carefully we can see its **main responsibility**: propagating input events to the global interactions list. 
+The answer is yes, the game viewport! Concretely the class [UGameViewportClient](https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Engine/UGameViewportClient/){:target="_blank"}, if we check the documentation carefully we can see its **main responsibility**: propagating input events to the global interactions list. 
 
 Once we know where to look, let’s get into it.
 
