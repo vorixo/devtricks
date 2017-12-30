@@ -107,12 +107,12 @@ Let’s drop some tips for a friendly implementation:
 
   * As we said at the beginning of the article, the input binding will happen on the controller since it will provide us with a faster response, but the **GameViewportClient** implementation is compatible with both ways of binding.
   * The controller (or the pawn) will read these keys and process them whenever it is required. One example of key processing would be the method **AShooterPlayerController** has:
-  {% highlight c++ %}
+{% highlight c++ %}
 void AShooterPlayerController::SimulateInputKey(FKey Key, bool bPressed)
 {
 	InputKey(Key, bPressed ? IE_Pressed : IE_Released, 1, false);
 }
-  {% endhighlight %}
+{% endhighlight %}
   * It is recommended to NOT use this array when it is not needed (ie: mid-game while playing), same for “recording the keys”. 
   * If done correctly you will have a responsive input system!
 
