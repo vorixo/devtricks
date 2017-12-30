@@ -1,0 +1,13 @@
+<script src="{{ '/assets/js/main.min.js' | absolute_url }}"></script>
+
+{% if jekyll.environment == "production" %}
+	{% include analytics.html %}
+{% endif %}
+
+{% include /comments-providers/scripts.html %}
+
+<script src="{{ '/assets/js/custom/scroll-progress-bar.js' | absolute_url }}"></script>
+
+{% if jekyll.environment == "production" %}
+	<script src="{{ '/assets/js/custom/analytics-bindings.js' | absolute_url }}"></script>
+{% endif %}

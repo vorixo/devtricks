@@ -1,0 +1,43 @@
+{% if page.series %}
+	{% capture title_series_prefix %}{{ page.series }}: {% endcapture %}
+	<div class="notice series-summary {{ include.position }}">
+		<h1 class="series-title">
+			{% if site.data["post-series"][page.series] %}
+				{{ site.data["post-series"][page.series].title }}
+			{% else %}
+				{{ page.series }}
+			{% endif %}
+		</h1>
+		<ol class="posts-list">
+		{% for post in site.posts reversed %}
+			{% if post.series == page.series %}
+				{% capture series_entry_title %}{{ post.title }}{% endcapture %}
+				
+				{% if site.data["post-series"][post.series] %}
+					{% for title_capture in site.data["post-series"][post.series]["post-list-title-removal"] %}
+						{% capture series_entry_title %}{{ series_entry_title | remove: title_capture }}{% endcapture %}
+					{% endfor %}
+				{% else %}
+					{% capture series_entry_title %}{{ series_entry_title | remove: page.series }}{% endcapture %}
+				{% endif %}
+
+				{% capture series_entry_title_first_character %}{{ series_entry_title | slice: 0 }}{% endcapture %}
+				{% if series_entry_title_first_character == ":" %}
+					{% capture series_entry_title %}{{ series_entry_title | remove_first: ":" }}{% endcapture %}
+				{% endif %}
+
+				{% capture series_entry_title %}{{ series_entry_title | strip }}{% endcapture %}
+				{% capture first_letter %}{{ series_entry_title | slice: 0 }}{% endcapture %}
+				{% capture capitalized_title %}{{ first_letter | upcase }}{{ series_entry_title | remove_first: first_letter }}{% endcapture %}
+				<li>
+					{% if post == page %}
+						{{ capitalized_title }}
+					{% else %}
+						<a class="series-post-entry-link" href="{{ '/' | absolute_url }}{{ post.url | slugify }}">{{ capitalized_title }}</a>
+					{% endif %}
+				</li>
+			{% endif %}
+		{% endfor %}
+		</ol>
+	</div>
+{% endif %}

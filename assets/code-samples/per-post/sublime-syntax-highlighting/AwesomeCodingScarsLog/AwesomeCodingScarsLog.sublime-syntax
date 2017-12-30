@@ -1,0 +1,41 @@
+%YAML 1.2
+---
+scope: acsl
+contexts:
+  log_line:
+    - match: "'([^']+)'"
+      captures:
+        1: acsl.singly-quoted
+
+    - match: '$'
+      pop: true
+
+  main:
+    # debug
+    - match: '^(\[D\])(\[.+\])(\[.+\])'
+      scope: acsl.debug
+      push: log_line
+
+    # info
+    - match: '^(\[I\])(\[.+\])(\[.+\])'
+      scope: acsl.info
+      push: log_line
+
+    # warning
+    - match: '^(\[W\])(\[.+\])(\[.+\])'
+      scope: acsl.warning
+      push: log_line
+  
+    # error
+    - match: '^(\[E\])(\[.+\])(\[.+\])'
+      scope: acsl.error
+      push: log_line
+
+    # fatal
+    - match: '^(\[F\])(\[.+\])(\[.+\])'
+      scope: acsl.fatal
+      push: log_line
+
+    # unexpected
+    - match: '.+'
+      scope: acsl.unexpected
