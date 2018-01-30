@@ -76,14 +76,14 @@ Expected result:
 
 Knowing this, if we don't follow a good design scheme **we would be creating a circular dependency with every single interactive "weapon" we have in our game**.
 
-To solve this, make all your interactive "weapons" implement common usage interfaces, by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain.Let's see the benefit of using them:
+To solve this, make all your interactive "weapons" implement common usage [interfaces](https://wiki.unrealengine.com/Interfaces_in_C%2B%2B), by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain.Let's see the benefit of using them:
 
   * Player doesn't need to know what accesory is controlling, weapon or not.
   * Player will just execute functions that will retrieve information (it can retrieve void aswell)
 
 General implementation approaches:
 
-  1. The less granular solution would be the implementation of a "god like" interaction interface. Some of these functions will return vague values, for example, if we carry a map in our inventory and our interface has a "GetMagAmmo" function, we will have to define special values for special situations. In this case, "GetMagAmmo" will return "-2" because it's a map and it doesn't have bullets. This could be useful aswell for a weapon with unlimited ammo; in that case we could use "-1" as the return failsafe ammo. **Have in mind that all these values would need to be well documented**.
+  1. The less granular solution would be the implementation of a "god like" interaction interface. Some of these functions will return vague values, for example, if we carry a [map](https://en.wikipedia.org/wiki/Map) in our inventory and our interface has a "GetMagAmmo" function, we will have to define special values for special situations. In this case, "GetMagAmmo" will return "-2" because it's a map and it doesn't have bullets. This could be useful aswell for a weapon with unlimited ammo; in that case we could use "-1" as the return failsafe ammo. **Have in mind that all these values would need to be well documented**.
   
   2.  If you prefer a more granular solution, another recommendation would be to split your system in various "as generic as possible" interfaces, so a map won't have to implement a function called "GetMagAmmo". The only expense of this approach would be that you would need to check if the interactible item implements or not said interface oposed to failsafe some values.
 
