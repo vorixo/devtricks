@@ -43,14 +43,13 @@ If we delay the start shooting signal with a timer (let's say 1 second), we will
 * Starts firing a weapon, gets called on "StartFire" function through timers that helps with  winding features.
 **/
 void UShooterWeapon_FiringComponent::OnStartFire() {
-  bWantsToFire = true;
-  DetermineWeaponState();
-  
-  // If the player doesn't want to shoot anymore after the deferred call, we cease the shooting
-  if (!OwnerWeapon->GetPawnOwner()->IsFiring()) {
-    StopFire();
-  }
-
+	bWantsToFire = true;
+	DetermineWeaponState();
+	
+	// If the player doesn't want to shoot anymore after the deferred call, we cease the shooting
+	if (!OwnerWeapon->GetPawnOwner()->IsFiring()) {
+		StopFire();
+	}
 }
 {% endhighlight %}
 
