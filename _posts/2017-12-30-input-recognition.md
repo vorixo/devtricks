@@ -61,7 +61,7 @@ This array is already the solution to our problem, but first, let me explain why
 
 {% highlight c++ %}
 bool UShooterGameViewportClient::InputKey(FViewport* v, int32 ControllerId, FKey Key, EInputEvent EventType, float AmountDepressed, bool bGamepad) {
-    if (EventType == 0) {
+  if (EventType == 0) {
 		keys.AddUnique(Key);
 	}
 	else if (EventType == 1) {
