@@ -70,13 +70,13 @@ Expected result:
   3. Player winds-up the weapon
   4. Once wound up, shoots 3 times consecutively (3 round burst)
   5. After the last shoot, the wind down counter starts
-  6. Once wound down finishes player starts sprinting
-
-Knowing this, if we don't follow a good design scheme **we would be creating a circular dependency with every single interactive "weapon" we have in our game**. 
+  6. Once wound down finishes player starts sprinting 
 
 # Interfaces
 
-Make all your interactive "weapons" implement common usage interfaces, by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain.Let's see the benefit of using them:
+Knowing this, if we don't follow a good design scheme **we would be creating a circular dependency with every single interactive "weapon" we have in our game**.
+
+To solve this, make all your interactive "weapons" implement common usage interfaces, by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain.Let's see the benefit of using them:
 
   * Player doesn't need to know what accesory is controlling, weapon or not.
   * Player will just execute functions that will retrieve information (it can retrieve void aswell)
