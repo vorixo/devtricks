@@ -65,11 +65,11 @@ As we can observe there are a lot of parts that will need to be controlled back 
 Expected result:
 
   1. Player starts sprinting
-  + Player stops sprinting because he detected a fire input
-  + Player winds-up the weapon
-  + Once wound up, shoots 3 times consecutively (3 round burst)
-  + After the last shoot, the wind down counter starts
-  + Once wound down finishes player starts sprinting
+  2. Player stops sprinting because he detected a fire input
+  3. Player winds-up the weapon
+  4. Once wound up, shoots 3 times consecutively (3 round burst)
+  5. After the last shoot, the wind down counter starts
+  6. Once wound down finishes player starts sprinting
 
 Knowing this, if we don't follow a good design scheme **we would be creating a circular dependency with every single interactive "weapon" we have in our game**. 
 
@@ -83,6 +83,7 @@ Make all your interactive "weapons" implement common usage interfaces, by doing 
 General implementation approaches:
 
   1. The less granular solution would be the implementation of a "god like" interaction interface. Some of these functions will return vague values, for example, if we carry a map in our inventory and our interface has a "GetMagAmmo" function, we will have to define special values for special situations. In this case, "GetMagAmmo" will return "-2" because it's a map and it doesn't have bullets. This could be useful aswell for a weapon with unlimited ammo; in that case we could use "-1" as the return failsafe ammo. **Have in mind that all these values would need to be well documented**.
+  
   2.  If you prefer a more granular solution, another recommendation would be to split your system in various "as generic as possible" interfaces, so a map won't have to implement a function called "GetMagAmmo". The only expense of this approach would be that you would need to check if the interactible item implements or not said interface oposed to failsafe some values.
 
 In my case I really **recommend the second approach**, as **there isn't explicit necessity of documenting what those values mean**. This second approach is more cohesive as we don't need to implement non-sensical functions for some classes requiring these interaction interfaces. In this case, the map won't implement the Ammo interface.
