@@ -14,7 +14,7 @@ tags:
 
 Hi, in today's article I will be writing about weapon systems and [coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming)).
 
-Weapon systems aren't as easy to design as it could seem, they require the team to have very clear **what they need, and what they don't**. The lack of a needed feature on the design phase can force the team to have to go back to the code and restructure it to suit it up. This would lead us to **rework  completely** some parts of the code based on the interaction of said feature. 
+Weapon systems aren't as easy to design as it could seem, they require the team to have very clear **what they need, and what they don't**. The lack of a needed feature on the design phase can force the team to have to go back to the code and restructure it to suit it up. This could lead us to **rework  completely** some parts of the code based on the interaction of said feature. 
 
 # The design is crucial, no matter what
 
