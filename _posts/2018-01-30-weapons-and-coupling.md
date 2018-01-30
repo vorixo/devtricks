@@ -87,6 +87,6 @@ General implementation approaches:
   
   2.  If you prefer a more granular solution, another recommendation would be to split your system in various "as generic as possible" interfaces, so a map won't have to implement a function called "GetMagAmmo". The only expense of this approach would be that you would need to check if the interactible item implements or not said interface oposed to failsafe some values.
 
-In my case I really **recommend the second approach**, as **there isn't explicit necessity of documenting what those values mean**. This second approach is more cohesive as we don't need to implement non-sensical functions for some classes requiring these interaction interfaces. In this case, the map won't implement the Ammo interface.
+In my case, I really **recommend the second approach**, as **there isn't the explicit necessity of documenting what those values mean**. This second approach is more cohesive as we don't need to implement non-sensical functions for some classes requiring these interaction interfaces. In this case, the map won't implement the Ammo interface.
 
 Enjoy, vorixo.
