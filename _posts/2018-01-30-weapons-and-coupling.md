@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Why a good design is crutial"
+title: "Why a good design is crucial"
 excerpt: Winding-Up and Winding-Down, the features that make you realize that designing a weapon framework is not as easy to decouple.
 author: Meta
 category: Videogames Development
@@ -16,7 +16,7 @@ Hi, in today's article I will be writing about weapon systems and [coupling](htt
 
 Weapon systems aren't as easy to design as it could seem, they require the team to have very clear **what they need, and what they don't**. The lack of a needed feature on the design phase can force the team to have to go back to the code and restructure it to suit it up. This would lead us to **rework  completely** some parts of the code based on the interaction of said feature. 
 
-# The design is crutial, no matter what
+# The design is crucial, no matter what
 
 This statement is pretty straight forward, but **doesn't contradict the fact that our code should be ready to handle [extensibility](https://en.wikipedia.org/wiki/Extensibility)** (depending the style of game). That's why I encourage a design based on a **component and data driven** approach, where each component handles individual parts of the full system. That would also be benefitial for future cases, since **reusability** of components would be a thing. 
 
