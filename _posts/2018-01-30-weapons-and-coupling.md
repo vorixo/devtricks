@@ -40,19 +40,21 @@ If we delay the start shooting signal with a timer (let's say 1 second), we will
 
 {% highlight c++ %}
 /**
-* Starts firing a weapon, gets called on "StartFire" function through timers * that helps with  winding features.
+* Starts firing a weapon, gets called on "StartFire" function through timers that helps with  winding features.
 **/
 void UShooterWeapon_FiringComponent::OnStartFire() {
   bWantsToFire = true;
   DetermineWeaponState();
-	// If the player doesn't want to shoot anymore after the deferred call, we cease the shooting
-	if (!OwnerWeapon->GetPawnOwner()->IsFiring()) {
+  
+  // If the player doesn't want to shoot anymore after the deferred call, we cease the shooting
+  if (!OwnerWeapon->GetPawnOwner()->IsFiring()) {
 		StopFire();
 	}
+
 }
 {% endhighlight %}
 
- In a wind-down situation is a bit different. Everytime we shoot, we will have some seconds when the player won't be able to sprint, this is a design choice to avoid sprint shooting spamming. One approach would be controlling that with a variable/interface/function on the character, that will check whether or not the controlled interactible (weapon, accessory…) is busy (doing things). 
+In a wind-down situation is a bit different. Everytime we shoot, we will have some seconds when the player won't be able to sprint, this is a design choice to avoid sprint shooting spamming. One approach would be controlling that with a variable/interface/function on the character, that will check whether or not the controlled interactible (weapon, accessory…) is busy (doing things). 
 
 # Interaction between elements
 
