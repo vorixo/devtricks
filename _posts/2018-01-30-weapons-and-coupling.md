@@ -48,8 +48,8 @@ void UShooterWeapon_FiringComponent::OnStartFire() {
   
   // If the player doesn't want to shoot anymore after the deferred call, we cease the shooting
   if (!OwnerWeapon->GetPawnOwner()->IsFiring()) {
-		StopFire();
-	}
+    StopFire();
+  }
 
 }
 {% endhighlight %}
