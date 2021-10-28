@@ -257,7 +257,7 @@ public:
 };
 {% endhighlight %}
 
-In this struct we are using an 8 bits BitMask (`uint8`) to identify 8 different gameplay tags. We can achieve the same effect using `NetDeltaSerialize` the same way it's done in the `FHitResult` definition. This BitMask works like a set of booleans to represent whether certain tag exists or not, is up to the game-code interpret what each bit means.
+In this struct we are using an 8 bits BitMask (`uint8`) to identify 8 different gameplay tags. We can achieve the same effect using `NetDeltaSerialize` the same way it's done in the `FHitResult` definition. This BitMask works like a set of booleans to represent whether certain tag exists or not in the target, is up to the game-code to interpret what each bit means.
 
 Once the variable replicates, we can do the following to read its value on the client:
 
@@ -267,7 +267,7 @@ bFourthTagExists = ((GameplayTagsBitMask & 0b00001000) != 0);
 bEighthTagExists = ((GameplayTagsBitMask & 0b10000000) != 0);
 {% endhighlight %}
 
-**Note:** To ease the explanation I've used binary notation to identify the flag position, but I recommend using hexadecimal for briefness.
+_**Note:** To ease the explanation I've used binary notation to identify the flag position, but I recommend using hexadecimal for briefness._
 
 #### 2.2. Define getters
 
