@@ -335,16 +335,16 @@ void ARBPlayerCharacter::OnRep_ReplicationVarList()
 		ASC->SetNumericAttributeBase(URBAttributeSet_Movement::GetWalkingSpeedAttribute(), ReplicationVarList.AttributeOne);
 		ASC->SetNumericAttributeBase(URBAttributeSet_Movement::GetSprintingSpeedAttribute(), ReplicationVarList.AttributeTwo);
 
-    	// Here you should add the tags to the simulated proxies ie.:
-    	bool bFirstTagExists = ((ReplicationVarList.GameplayTagsBitMask & 0x01) != 0);
-   		if(bFirstTagExists)
-    	{
-      		ASC->AddLooseGameplayTag(FGameplayTag::RequestGameplayTag("Data.Sample"));
-    	}
-    	else
-    	{
-      		ASC->RemoveLooseGameplayTag(FGameplayTag::RequestGameplayTag("Data.Sample"));
-    	}
+		// Here you should add the tags to the simulated proxies ie.:
+		bool bFirstTagExists = ((ReplicationVarList.GameplayTagsBitMask & 0x01) != 0);
+		if(bFirstTagExists)
+		{
+			ASC->AddLooseGameplayTag(FGameplayTag::RequestGameplayTag("Data.Sample"));
+		}
+		else
+		{
+			ASC->RemoveLooseGameplayTag(FGameplayTag::RequestGameplayTag("Data.Sample"));
+		}
 	}
 }
 {% endhighlight %}
