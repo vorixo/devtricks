@@ -74,15 +74,15 @@ void ARBPlayerCharacter::PossessedBy(AController* NewController)
 	{
 		if (ARBPlayerState* PS = GetPlayerState<ARBPlayerState>())
 		{
-      		// Cache the ASC in the Server (TWeakObjectPtr preferrable)
+			// Cache the ASC in the Server (TWeakObjectPtr preferrable)
 			AbilitySystemComponent = Cast<URBAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 			
-      		// Init the Server side part of the ASC
-      		AbilitySystemComponent->InitAbilityActorInfo(PS, this);
+			// Init the Server side part of the ASC
+			AbilitySystemComponent->InitAbilityActorInfo(PS, this);
 
 			// Some games grant attributes and abilities here
 
-      		// Some games server initialize another components of the character that use the ASC here
+			// Some games server initialize another components of the character that use the ASC here
 		}
 	}
 }	             
@@ -100,16 +100,16 @@ void ARBPlayerCharacter::OnRep_PlayerState()
 	{
 		if (ARBPlayerState* PS = GetPlayerState<ARBPlayerState>())
 		{
-      		// Cache the ASC in the Client (TWeakObjectPtr preferrable)
+			// Cache the ASC in the Client (TWeakObjectPtr preferrable)
 			AbilitySystemComponent = Cast<URBAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 			
-      		// Init the Client side part of the ASC
-      		AbilitySystemComponent->InitAbilityActorInfo(PS, this);
+			// Init the Client side part of the ASC
+			AbilitySystemComponent->InitAbilityActorInfo(PS, this);
 		
-      		// Some games grant attributes here
+			// Some games grant attributes here
 
      		// Some games client initialize another components of the character that use the ASC here
-    	}
+		}
 	}
 }
 {% endhighlight %}
