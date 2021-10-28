@@ -161,8 +161,8 @@ net.UseAdaptiveNetUpdateFrequency=1
 ```
 
 However, in UE4 and UE5 Early Access, this won't work. To make it work in those engine versions you have the following alternatives: 
-  * A) Remove `net.UseAdaptiveNetUpdateFrequency=0` from `Engine/Config/ConsoleVariables.ini` in the Engine's directory (like [this](https://github.com/EpicGames/UnrealEngine/commit/002a1bebb69660c16b4f2f0f8b0f43520e818cd1#diff-7f69b5e66f7365484672aeb4e44691f46a89674b05df4587a02ad49369360ec6)).
-  * B) Switch the CVAR value in the Server when the game starts (right after ConsoleVariables.ini gets called).
+  * **a)** Remove `net.UseAdaptiveNetUpdateFrequency=0` from `Engine/Config/ConsoleVariables.ini` in the Engine's directory (like [this](https://github.com/EpicGames/UnrealEngine/commit/002a1bebb69660c16b4f2f0f8b0f43520e818cd1#diff-7f69b5e66f7365484672aeb4e44691f46a89674b05df4587a02ad49369360ec6)).
+  * **b)** Switch the CVAR value in the Server when the game starts (right after ConsoleVariables.ini gets called).
 
 ## PlayerStates are always relevant
 
