@@ -108,7 +108,7 @@ void ARBPlayerCharacter::OnRep_PlayerState()
 		
 			// Some games grant attributes here
 
-     		// Some games client initialize another components of the character that use the ASC here
+			// Some games client initialize another components of the character that use the ASC here
 		}
 	}
 }
@@ -194,24 +194,24 @@ Let's take a look on how to implement this.
 {% highlight c++ %}
 bool ARBPlayerState::ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags)
 {
-  check(Channel);
-  check(Bunch);
-  check(RepFlags);
+	check(Channel);
+	check(Bunch);
+	check(RepFlags);
 
-  bool WroteSomething = false;
+	bool WroteSomething = false;
 
-  for (UActorComponent* ActorComp : ReplicatedComponents)
-  {
-    if (ActorComp && ActorComp->GetIsReplicated())
-    {
-      if (!ActorComp->IsA(AbilitySystemComponent->GetClass()) || RepFlags->bNetOwner || !AbilitySystemComponent->ReplicationProxyEnabled)
-      {
-        WroteSomething |= ActorComp->ReplicateSubobjects(Channel, Bunch, RepFlags);
-        WroteSomething |= Channel->ReplicateSubobject(ActorComp, *Bunch, *RepFlags);
-      }
-    }
-  }
-  return WroteSomething;
+	for (UActorComponent* ActorComp : ReplicatedComponents)
+	{
+		if (ActorComp && ActorComp->GetIsReplicated())
+		{
+			if (!ActorComp->IsA(AbilitySystemComponent->GetClass()) || RepFlags->bNetOwner || !AbilitySystemComponent->ReplicationProxyEnabled)
+			{
+				WroteSomething |= ActorComp->ReplicateSubobjects(Channel, Bunch, RepFlags);
+				WroteSomething |= Channel->ReplicateSubobject(ActorComp, *Bunch, *RepFlags);
+			}
+		}
+	}
+	return WroteSomething;
 }
 {% endhighlight %}
 
@@ -286,32 +286,32 @@ FReplicationProxyVarList& ARBPlayerCharacter::Call_GetReplicationVarList_Mutable
 {% highlight c++ %}
 bool ARBPlayerState::ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags)
 {
-  check(Channel);
-  check(Bunch);
-  check(RepFlags);
+	check(Channel);
+	check(Bunch);
+	check(RepFlags);
 
-  bool WroteSomething = false;
+	bool WroteSomething = false;
 
-  for (UActorComponent* ActorComp : ReplicatedComponents)
-  {
-    if (ActorComp && ActorComp->GetIsReplicated())
-    {
-      // We replicate replicate everything but simulated proxies in ASC
-      if (!ActorComp->IsA(AbilitySystemComponent->GetClass()) || RepFlags->bNetOwner || !AbilitySystemComponent->ReplicationProxyEnabled)
-      {
-        WroteSomething |= ActorComp->ReplicateSubobjects(Channel, Bunch, RepFlags);
-        WroteSomething |= Channel->ReplicateSubobject(ActorComp, *Bunch, *RepFlags);
-      }
-      else
-      {
-        ARBPlayerCharacter* MyCharacter = GetPawn<ARBPlayerCharacter>();
-        MyCharacter->Call_GetReplicationVarList_Mutable().Copy(ServerFlags, 
-          AbilitySystemComponent->GetNumericAttribute(URBAttributeSet_Dummy::GetOneAttribute()),
-          AbilitySystemComponent->GetNumericAttribute(URBAttributeSet_Dummy::GetTwoAttribute()));
-      }
-    }
-  }
-  return WroteSomething;
+	for (UActorComponent* ActorComp : ReplicatedComponents)
+	{
+		if (ActorComp && ActorComp->GetIsReplicated())
+		{
+			// We replicate replicate everything but simulated proxies in ASC
+			if (!ActorComp->IsA(AbilitySystemComponent->GetClass()) || RepFlags->bNetOwner || !AbilitySystemComponent->ReplicationProxyEnabled)
+			{
+				WroteSomething |= ActorComp->ReplicateSubobjects(Channel, Bunch, RepFlags);
+				WroteSomething |= Channel->ReplicateSubobject(ActorComp, *Bunch, *RepFlags);
+			}
+			else
+			{
+				ARBPlayerCharacter* MyCharacter = GetPawn<ARBPlayerCharacter>();
+				MyCharacter->Call_GetReplicationVarList_Mutable().Copy(ServerFlags, 
+					AbilitySystemComponent->GetNumericAttribute(URBAttributeSet_Dummy::GetOneAttribute()),
+					AbilitySystemComponent->GetNumericAttribute(URBAttributeSet_Dummy::GetTwoAttribute()));
+			}
+		}
+	}
+	return WroteSomething;
 }
 {% endhighlight %}
 
