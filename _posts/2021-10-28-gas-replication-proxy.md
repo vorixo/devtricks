@@ -353,7 +353,7 @@ By doing this, the simulated proxies will gather the desired replicated data mar
 
 ### 4. Handling gameplay cues
 
-Since we are skipping simulated proxies in `ReplicateSubobjects`, we must handle the GameplayCues manually, since they no longer replicate to everyone. 
+Since we are skipping simulated proxies in `ReplicateSubobjects`, we must handle animations and GameplayCues manually, since they no longer replicate to everyone. 
 
 And this is a great change since we'll be using the Pawn's relevancy instead of the **boring** always relevant PlayerState.
 
@@ -629,7 +629,7 @@ float URBAbilitySystemComponent::PlayMontage(UGameplayAbility* InAnimatingAbilit
 
 			LocalAnimMontageInfo.AnimMontage = NewAnimMontage;
 			LocalAnimMontageInfo.AnimatingAbility = InAnimatingAbility;
-			LocalAnimMontageInfo.PlayBit = !LocalAnimMontageInfo.PlayBit;
+			LocalAnimMontageInfo.PlayInstanceId = (LocalAnimMontageInfo.PlayInstanceId < UINT8_MAX ? LocalAnimMontageInfo.PlayInstanceId + 1 : 0);
 
 			if (InAnimatingAbility)
 			{
@@ -650,7 +650,7 @@ float URBAbilitySystemComponent::PlayMontage(UGameplayAbility* InAnimatingAbilit
 
 				// Those are static parameters, they are only set when the montage is played. They are not changed after that.
 				MutableRepAnimMontageInfo.AnimMontage = NewAnimMontage;
-				MutableRepAnimMontageInfo.ForcePlayBit = !bool(MutableRepAnimMontageInfo.ForcePlayBit);
+				MutableRepAnimMontageInfo.PlayInstanceId = (MutableRepAnimMontageInfo.PlayInstanceId < UINT8_MAX ? MutableRepAnimMontageInfo.PlayInstanceId + 1 : 0);
 
 				MutableRepAnimMontageInfo.SectionIdToPlay = 0;
 				if (MutableRepAnimMontageInfo.AnimMontage && StartSectionName != NAME_None)
@@ -681,6 +681,27 @@ float URBAbilitySystemComponent::PlayMontage(UGameplayAbility* InAnimatingAbilit
 	}
 
 	return Duration;
+}
+
+void URBAbilitySystemComponent::CurrentMontageStop(float OverrideBlendOutTime /*= -1.0f*/)
+{
+	UAnimInstance* AnimInstance = AbilityActorInfo.IsValid() ? AbilityActorInfo->GetAnimInstance() : nullptr;
+	UAnimMontage* MontageToStop = LocalAnimMontageInfo.AnimMontage;
+	bool bShouldStopMontage = AnimInstance && MontageToStop && !AnimInstance->Montage_GetIsStopped(MontageToStop);
+
+	if (bShouldStopMontage)
+	{
+		const float BlendOutTime = (OverrideBlendOutTime >= 0.0f ? OverrideBlendOutTime : MontageToStop->BlendOut.GetBlendTime());
+
+		AnimInstance->Montage_Stop(BlendOutTime, MontageToStop);
+
+		if (IsOwnerActorAuthoritative())
+		{
+			IRBAbilitySystemReplicationProxyInterface* ReplicationInterface = GetExtendedReplicationInterface();
+			FGameplayAbilityRepAnimMontage& MutableRepAnimMontageInfo = ReplicationInterface ? ReplicationInterface->Call_GetRepAnimMontageInfo_Mutable() : GetRepAnimMontageInfo_Mutable();
+			AnimMontage_UpdateReplicatedData(MutableRepAnimMontageInfo);
+		}
+	}
 }
 {% endhighlight %}
 
