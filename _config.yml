@@ -291,3 +291,4 @@ defaults:
       toc_label: "Contents"
       toc_icon: "cog"
       toc_sticky: true
+      breadcrumbs: true
