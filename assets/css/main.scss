@@ -7,4 +7,4 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-$max-width: 1280px;
+$-webkit-text-size-adjust: 100%;
