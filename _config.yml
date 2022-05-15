@@ -18,9 +18,9 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "default", "dirt"
 locale                   : "en-US"
 title                    : "Devtricks"
 title_separator          : "-"
-subtitle                 : "Programming and game development blog"
+subtitle                 : # site tagline that appears below site title in masthead
 name                     : "vorixo"
-description              : "Gameplay Programming and Networking tutorials"
+description              : "Programming and game development blog"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -291,3 +291,4 @@ defaults:
       toc: true
       toc_label: "Contents"
       toc_icon: "cog"
+      toc_sticky: true
