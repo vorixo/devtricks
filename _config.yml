@@ -292,3 +292,4 @@ defaults:
       toc_icon: "cog"
       toc_sticky: true
       breadcrumbs: true
+      search: true
