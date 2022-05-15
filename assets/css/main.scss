@@ -6,7 +6,3 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
-
-$margin: 0;
-$padding: 0;
-$line-heaight: 1.5;
