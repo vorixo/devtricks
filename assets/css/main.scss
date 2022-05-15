@@ -8,5 +8,9 @@
     max-width: 1920px !important;
 }
 
+.breadcrumbs {
+    max-width: 1920px !important;
+}
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
