@@ -65,7 +65,8 @@ Which is great, we see the new mesh in all the players. However, when we late-jo
 
 The newly spawned client won't see the new mesh, since, as I mentioned in the above Section, new connections have no clue which RPCs were sent recently.
 
-{% include tip.html content="Late joiners: For earlier versions of UE5 this feature can be activated under `Editor Preferences > Experimental > PIE > Allow late joining`" %}
+**Late joiners:** For earlier versions of UE5 this feature can be activated under `Editor Preferences > Experimental > PIE > Allow late joining`
+{: .notice--info}
 
 ## The solution
 
