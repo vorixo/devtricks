@@ -28,7 +28,7 @@ This post won't get into low level details, but will provide insights on how Mul
 OnReps are replicated variables that trigger a behaviour on clients and server whenever the stored value changes. However, they don't behave exactly the same in Blueprints and C++:
 
 
-- **C++:**  The OnRep behavior will only trigger on the clients when the value of the variable changes. Server NEVER triggers the OnRep behavior unless we call the OnRep function explicitly.
+- **C++:** When changing an OnRep variable in the Server, the OnRep behavior will only trigger on the clients when the value of the variable changes. The Server won't trigger the OnRep behavior, meaning that we have to call the OnRep function explicitly from the Server if we wish to execute the OnRep behaviour in the Server.
 
 - **Blueprints:** When we set an OnRep variable in the server, the OnRep behaviour will be triggered always on the server (even if the value of the variable didn't change). However, the OnRep behavior will only be triggered on the clients if the variable of the OnRep has changed. In addition, it is not possible to call explicitly the OnRep functions created by OnRep variables.
 
