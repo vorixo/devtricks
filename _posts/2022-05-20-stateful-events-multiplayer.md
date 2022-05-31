@@ -41,9 +41,9 @@ Multicast and Client RPCs are one-off events that should be only executed from t
 
 - **Multicast RPC:** Multicasts execute in all the clients, they are useful for one-off events, like one-shot SFX and VFX.
 
-- **Client RPC:** Client RPCs execute only in the client to which the RPC is targeted to. It can be useful for one of events targetted to one specific client (ie: A team-mate sending you a  [private message](https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/GameFramework/APlayerController/ClientTeamMessage/)).
+- **Client RPC:** Client RPCs execute only in the client to which the RPC is targeted to. It can be useful for one-off events targetted to one specific client (ie: A team-mate sending you a [private message](https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/GameFramework/APlayerController/ClientTeamMessage/)).
 
-Essentially, Multicast and Client RPC's are for one-off events, meaning that they don't persist any state. New connections have no clue which RPCs were sent recently.
+Essentially, Multicast and Client RPCs are for one-off events, meaning that they don't persist any state. New connections have no clue which RPCs were sent recently.
 
 # Towards relevancy resilient code
 
