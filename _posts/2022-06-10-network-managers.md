@@ -13,15 +13,15 @@ tags:
   - Optimization
 ---
 
-In this article we will see what network managers are and discover how they can alleviate the load produced on our server instance when we need to replicate hundreds of Actors in our world.
+In this post, we'll be touching on Network Managers and exploring how we can use them to minimise the inevitable server load that comes with cases requiring the replication of hundreds of actors across our World.
 
 # What is a network manager?
 
-A network manager is an Actor in the world that takes care of the data replication of a set of Actors without the need to replicate them. 
+A Network Manager is a type of Actor that handles the data replication of a given set of Actors, negating the need to replicate the Actors themselves.
 
-Each network manager tracks a set of Actors in a list (order of hundreds), and sends an event to the appropriate Actor once a variable needs to replicate.
+Each network manager tracks a set of Actors in a list (order of hundreds), and sends an event to the appropriate Actor  when a variable requires replicating.
 
-Network managers handle data replication, however **Actors that require RPCs to work need to be replicated**. In these cases, it's recommended to turn down the `NetUpdateFrequency` of the tracked Actors as variable replication is handled by the manager.
+While Network Managers handle data replication, we should note that **Actors which require RPCs to work still need to be replicated**. In these cases, it's recommended to reduce the `NetUpdateFrequency` of the tracked Actors as variable replication is handled by the manager.
 
 ## Why are network managers useful?
 
@@ -31,33 +31,33 @@ Quoting my dear friend `Zlo#1654` from [Slackers](https://unrealslackers.org/):
 
 The `NetBroadcastTick` is a [Stat](https://docs.unrealengine.com/4.27/en-US/TestingAndOptimization/PerformanceAndProfiling/StatCommands/StatsSystemOverview/) that measures performance data from the `BroadcastTickFlush` function that is part of the `UWorld::Tick`. This function is in charge of flushing networking and ticking our net drivers (`UNetDriver::TickFlush`). In essence, it's the responsible of managing the replication of all of our replicated Actors.
 
-This means that the more replicated Actors we have, the more processing time `BroadcastTickFlush` will need. Thus, our main objective towards a CPU time server optimization is to keep the values reported by `NetBroadcastTick` low.
+This means that the more replicated Actors we have, the more processing time `BroadcastTickFlush` will need. Thus, the main objective in our quest to reduce server CPU processing time is to keep the values reported by `NetBroadcastTick` as low as possible.
 
 CPU timing issues derived from bad `NetBroadcastTick` metrics are far more common than bandwidth issues in our Server instances.
 {: .notice--info}
 
-Thus, the main use of network managers is to reduce the amount of replicated Actors by [turning off their replication](https://docs.unrealengine.com/4.27/en-US/API/Runtime/Engine/GameFramework/AActor/SetReplicates/) and giving that responsibility to a series of Actor managers, translating in a direct `NetBroadcastTick` optimization. 
+Thus, the main use of network managers is to reduce the amount of replicated Actors by [turning off their replication](https://docs.unrealengine.com/4.27/en-US/API/Runtime/Engine/GameFramework/AActor/SetReplicates/) and passing that responsibility on to a series of Actor managers, a process that yields a direct `NetBroadcastTick` optimization. 
 
-We can argue that this same effect can be obtained employing [Dormancy](https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/ENetDormancy/) and a reduced `NetUpdateFrequency`, however, you can end up with less Net responsive Actors and complicated relevancy scenarios. In order to increase responsiveness, it'd be necessary to boost the [`NetPriority`](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/Relevancy/#prioritization) and the `NetUpdateFrequency` of all your replicated Actors, which would be disastrous in any multiplayer use case.
+We could argue that this same effect can be achieved by employing [Dormancy](https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/ENetDormancy/) and a reduced `NetUpdateFrequency`. However,  this approach can result in less Net responsive Actors and complicated relevancy scenarios. To combat this, it would become necessary to boost the [`NetPriority`](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/Relevancy/#prioritization) and the `NetUpdateFrequency` of all your replicated Actors, a disastrous change for any multiplayer use case.
 
-This can also be mitigated with Actor managers. Due to the small number of network managers in our world, we can set a higher `NetPriority` (ie. 2.8) without causing bandwidth issues, which translates into an increase of responsiveness of the tracked Actors.
+This can also be mitigated with the use of Actor Managers. Due to the small number of network managers in our world, we can set a higher `NetPriority` (ie. 2.8) without causing bandwidth issues, which would translate to an increase in the responsivity of the tracked Actors.
 
 
 ## Performance implications
 
-This Section showcases metrics over replicating 976 actors with a net manager and without a net manager. The test was conducted with 2 players: A listen server host player with a `-nullrhi` instance and a client. The metrics were recorded from the server instance using [Unreal Insights](https://docs.unrealengine.com/4.26/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/), both experiments were performed in the same hardware under equivalent conditions.
+This Section showcases metrics from replicating 976 actors with and without a network manager. The test was conducted with 2 players: A listen server host player with a `-nullrhi` instance, and a client. The metrics were recorded from the server instance using [Unreal Insights](https://docs.unrealengine.com/4.26/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/), and both experiments were performed on the same hardware under equivalent conditions.
 
-This first experiment consists on replicating 976 actors of two different types with 10 replicated variables:
+The first experiment consisted of replicating 976 Actors of two different types with 10 replicated variables:
 
 ![Without network manager]({{ '/' | absolute_url }}/assets/images/per-post/net-man/Profiling1000actors.jpg){: .align-center}
 
-The second experiment consists on moving 720 of those 976 actors to a network manager (256 Actors still replicate):
+In the second experiment, however, we delegated the handling of 720 of those 976 actors to a Network Manager (leaving the remaining 256 actors to still be replicated):
 
 ![Without network manager]({{ '/' | absolute_url }}/assets/images/per-post/net-man/Profiling1000actors720netman.jpg){: .align-center}
 
 As we can see the performance metrics in the second experiment look more favorable, as we are reducing considerably the amount of replicated Actors by moving their data replication to a network manager (while keeping the same amount of Actors in the Level).
 
-Actors that need RPC's to work will still need to be replicated.
+Actors that need RPCs to work will still need to be replicated.
 {: .notice--info}
 
 
@@ -65,7 +65,7 @@ Actors that need RPC's to work will still need to be replicated.
 
 The network manager is an `AActor` that uses `FFastArraySerializer`(s) to hold the data of all their tracked Actors.
 
-In this Section we'll implement a simple network manager that handles the replication of a health component we designed for active Actors around the world.
+In this Section, we'll implement a simple network manager that handles the replication of a health component we designed for active Actors around the world.
 
 Without the network manager, all the Actors with the health component would need to be replicated alongside the component.
 
@@ -141,9 +141,9 @@ void FHealthCompItem::PostReplicatedChange(const struct FHealthCompContainer& In
 }
 {% endhighlight %}
 
-The `FHealthCompItem` corresponds to a health component from an Actor and contains a reference to its owner and the data to replicate. In this example the data is contained in a `TArray<uint8> Data` to demonstrate encoding and decoding of generic data, but it is possible (and also recommended in gameplay intensive instances) to have it in independent properties to ease debugging.
+The `FHealthCompItem` corresponds to a health component from an Actor and contains a reference to its owner and the data to replicate. In this example the data is contained in a `TArray<uint8> Data` to demonstrate encoding and decoding of generic data, but it is possible (and also recommended in gameplay-intensive instances) to have it in independent properties to ease debugging.
 
-`PostReplicatedChange` calls a custom function in the health component called `PostReplication`, which is the responsible of receiving and decoding the data on the client's end.
+`PostReplicatedChange` calls a custom function in the health component called `PostReplication`, which is responsible of receiving and decoding the data on the client's end.
 
 ## The network manager class
 
@@ -211,7 +211,7 @@ void ANetMan::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeP
 }
 {% endhighlight %}
 
-Network managers can work with the [relevancy](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/Relevancy/#relevancy) system, but it's not very convenient as we have a few of them, in this case I decided to make them always relevant. The following two functions describe the core functionalities we require in our network managers:
+Network managers can work with the [relevancy](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/Relevancy/#relevancy) system, but it's not very convenient as we have a few of them, in this case, I decided to make them always relevant. The following two functions describe the core functionalities we require in our network managers:
 
 - `RegisterActor:` Adds an element to our fast array constructing a `FHealthCompItem` that gets added to the array.
 - `UpdateActor`: Updates the data of an element in our fast array. For that, we find the owner actor within the array and update the data on the found entry.
@@ -294,9 +294,9 @@ And with that, `Health` and `Shield` are set appropriately in the client.
 
 # Conclusion
 
-As we saw, with a few lines of code, we were able to optimize the CPU time consumed in the server by processing hundreds of replicated Actors through a Network manager. 
+With just a few lines of code, we have optimised the CPU time consumed on the server by processing hundreds of replicated Actors through a Network manager.
 
-Network managers are a great solution in cases where we have to handle lots of actors of the same type, for both, performance and responsiveness.
+Network managers are a great solution in cases where we have to handle lots of actors of the same type, both for performance and responsiveness.
 
 Before I finish, I would like to thank [Jambax](https://jambax.co.uk/) and Zlo for introducing and explaining these concepts in the [Unreal Slackers discord](https://unrealslackers.org/), which motivated me to do my own research and create this post.
 
