@@ -256,7 +256,7 @@ void UHealthComponent::DoDamage(float Damage)
 The `PostReplication` function handles the client data:
 
 {% highlight c++ %}
-void UHealthComponent::PostReplication(TArray<uint8> Payload)
+void UHealthComponent::PostReplication(const TArray<uint8>& Payload)
 {
 	Decode(Payload);
 	if (Health <= 0)
