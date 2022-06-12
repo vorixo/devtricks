@@ -17,7 +17,7 @@ In this post, we'll be touching on Network Managers and exploring how we can use
 
 # What is a network manager?
 
-A Network Manager is a type of Actor that handles the data replication of a given set of Actors, negating the need to replicate the Actors themselves.
+A Network Manager is a replicated Actor that handles the data replication of a given set of Actors, negating the need to replicate the Actors themselves.
 
 Each network manager tracks a set of Actors in a list (order of hundreds), and sends an event to the appropriate Actor  when a variable requires replicating.
 
