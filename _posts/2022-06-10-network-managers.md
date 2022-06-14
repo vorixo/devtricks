@@ -69,6 +69,9 @@ In this Section, we'll implement a simple network manager that handles the repli
 
 Without the network manager, all the Actors with the health component would need to be replicated alongside the component.
 
+This article focuses on the replication of Actors previously placed in the level, so it is not necessary to replicate them. Future posts linked in this article will expand the concept to Actors spawned in runtime.
+{: .notice--info}
+
 ## `FFastArraySerializer`
 
 Each [`FFastArraySerializer`](https://github.com/EpicGames/UnrealEngine/blob/ue5-main/Engine/Source/Runtime/Net/Core/Classes/Net/Serialization/FastArraySerializer.h) in our manager handles a type of Actor, in this example, our network manager handles the replication of health components:
