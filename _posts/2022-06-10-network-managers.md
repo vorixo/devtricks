@@ -47,15 +47,19 @@ This can also be mitigated with the use of Actor Managers. Due to the small numb
 
 This Section showcases metrics from replicating 976 actors with and without a network manager. The test was conducted with 2 players: A listen server host player with a `-nullrhi` instance, and a client. The metrics were recorded from the server instance using [Unreal Insights](https://docs.unrealengine.com/4.26/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/), and both experiments were performed on the same hardware under equivalent conditions.
 
-The first experiment consisted of replicating 976 Actors of two different types with 10 replicated variables:
+The first experiment consists of replicating 976 Actors with two replicated variables, each Actor runs at a `NetUpdateFrequency` of 25 and has a `NetPriority` of 1:
 
 ![Without network manager]({{ '/' | absolute_url }}/assets/images/per-post/net-man/Profiling1000actors.jpg){: .align-center}
 
-In the second experiment, however, we delegated the handling of 720 of those 976 actors to a Network Manager (leaving the remaining 256 actors to still be replicated):
+In the second experiment, 720 of those 976 actors use the [Push Model](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Net/Core/Private/Net/Core/PushModel/PushModel.cpp) with a reduced `NetUpdateFrequency` of 1 (leaving the remaining 256 actors with default replication):
+
+![Without network manager]({{ '/' | absolute_url }}/assets/images/per-post/net-man/pushmodel-samesetup.jpg){: .align-center}
+
+In the third experiment, we delegated the handling of 720 of those 976 actors to a Network Manager running with a `NetUpdateFrequency` of 100 (leaving the remaining 256 actors with default replication with a `NetUpdateFrequency` of 25):
 
 ![Without network manager]({{ '/' | absolute_url }}/assets/images/per-post/net-man/Profiling1000actors720netman.jpg){: .align-center}
 
-As we can see the performance metrics in the second experiment look more favorable, as we are reducing considerably the amount of replicated Actors by moving their data replication to a network manager (while keeping the same amount of Actors in the Level).
+As we can see the performance metrics in the third experiment look more favorable, as we are reducing considerably the amount of replicated Actors by moving their data replication to a network manager (while keeping the same amount of Actors in the Level). The Push Model experiment provides speedup over the baseline setup, but the network manager is the absolute winner for this use case.
 
 Actors that need RPCs to work will still need to be replicated.
 {: .notice--info}
