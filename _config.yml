@@ -24,7 +24,7 @@ description              : "Programming and game development blog"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/images/vori.png" # this one appears in the twitter thumbnails
+teaser                   : "/assets/images/site-teaser.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png" - This appears at the left of devtricks
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
@@ -78,12 +78,12 @@ naver_site_verification  :
 
 # Social Sharing
 twitter:
-  username               :
+  username               : "vorixo"
 facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/assets/images/site-teaser.png"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
