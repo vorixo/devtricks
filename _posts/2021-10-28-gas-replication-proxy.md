@@ -1,7 +1,9 @@
 ---
 layout: single
 title: "Gameplay Ability System - Advanced Network Optimizations"
-excerpt: How to save some bandwidth
+excerpt: Gameplay Ability System network optimizations (Saving CPU and bandwidth).
+header:
+  teaser: /assets/images/per-post/gas-net-op/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
