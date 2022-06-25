@@ -1,7 +1,9 @@
 ---
 layout: single
 title: "Input recognition and responsitivity on UE4"
-excerpt: In this article we'll have a look about how to solve the input responsive problem on UE4
+excerpt: In this article we'll have a look about how to solve the input responsive problem on UE4.
+header:
+  teaser: /assets/images/per-post/input-recognition/carrey.gif
 author: Meta
 category: Videogames Development
 tags:
