@@ -229,8 +229,8 @@
     }
 
     @include breakpoint($medium) {
-      min-height: 200px;
-      max-height: 200px;
+      min-height: 180px;
+      max-height: 180px;
       border: 1px solid $border-color
     }
   }
