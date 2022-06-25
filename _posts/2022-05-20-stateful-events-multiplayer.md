@@ -2,6 +2,8 @@
 layout: single
 title: "Unreal Engine 5 - Correct stateful replication"
 excerpt: RPCs or OnReps, what shall I use?
+header:
+  teaser: /assets/images/per-post/stateful-rep/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
