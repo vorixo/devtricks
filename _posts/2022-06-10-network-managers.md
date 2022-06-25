@@ -1,7 +1,9 @@
 ---
 layout: single
 title: "Unreal Engine 5 - The magic of network managers (Networking optimization)"
-excerpt: How to replicate hundreds of actors without replicating them
+excerpt: How to replicate hundreds of actors without replicating them.
+header:
+  teaser: /assets/images/per-post/net-man/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
