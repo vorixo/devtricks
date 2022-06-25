@@ -45,7 +45,7 @@ This can also be mitigated with the use of Actor Managers. Due to the small numb
 
 ## Performance implications
 
-This Section showcases metrics from replicating 976 actors with and without a network manager. The test was conducted with 2 players: A listen server host player with a `-nullrhi` instance, and a client. The metrics were recorded from the server instance using [Unreal Insights](https://docs.unrealengine.com/4.26/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/), and both experiments were performed on the same hardware under equivalent conditions.
+This Section showcases metrics from replicating 976 actors with and without a network manager. The test was conducted with 2 players: A listen server host player with a `-nullrhi` instance, and a `-nullrhi` client. The metrics were recorded from the server instance using [Unreal Insights](https://docs.unrealengine.com/4.26/en-US/TestingAndOptimization/PerformanceAndProfiling/UnrealInsights/), and all the experiments were performed on the same hardware under equivalent conditions.
 
 The first experiment consists of replicating 976 Actors with two replicated variables, each Actor runs at a `NetUpdateFrequency` of 25 and has a `NetPriority` of 1:
 
