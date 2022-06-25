@@ -2,6 +2,8 @@
 layout: single
 title: "Why a good design is crucial"
 excerpt: Winding-Up and Winding-Down, the features that make you realize that designing a weapon framework is not as easy to decouple.
+header:
+  teaser: /assets/images/per-post/weapons-and-coupling/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
