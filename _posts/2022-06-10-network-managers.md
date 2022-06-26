@@ -4,7 +4,7 @@ title: "Unreal Engine - The magic of Network Managers (Networking optimization)"
 excerpt: How to replicate hundreds of actors without replicating them.
 header:
   teaser: /assets/images/per-post/net-man/thumb.jpg
-  og_image: /assets/images/per-post/net-man/thumb.jpg
+  # og_image: /assets/images/per-post/net-man/thumb.jpg # Add if you want a bigger thumbnail
 author: Meta
 category: Videogames Development
 tags:
