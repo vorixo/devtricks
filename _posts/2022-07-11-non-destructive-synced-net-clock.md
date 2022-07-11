@@ -168,10 +168,12 @@ No matter which clock you end up using, remember that you cannot trust the clock
 
 # Conclusion
 
-Finally a non-intrusive synced network clock!
+Finally, a non-intrusive synced network clock! 
 
-I would like to thank Zlo again for all the help he gave me to make this post. As well as all the people who support my articles, you are amazing. 
+As I always say, be sure to make your own experiments, and don't blindly trust randoms on the internet (me)! 
 
-One of the best ways to track when I post articles is on Twitter, so [don't be afraid to follow me](https://twitter.com/vorixo)! DM's are open!
+I would like to thank `Zlo#1654` from [Slackers](https://unrealslackers.org/) again for all the help he gave me to make this post. As well  all the people who support my articles, you are amazing. 
+
+By the way, the best way to track when I post articles is on Twitter, so [don't be afraid to follow me](https://twitter.com/vorixo)! DM's are open!
 
 Enjoy, vori.

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Unreal Engine 5 - Correct stateful replication"
+title: "Unreal Engine - Correct stateful replication"
 excerpt: RPCs or OnReps, what shall I use?
 header:
   teaser: /assets/images/per-post/stateful-rep/thumb.jpg
