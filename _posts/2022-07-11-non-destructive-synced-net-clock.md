@@ -182,7 +182,7 @@ As seen above, the new network clock reports values closer to the expected value
 
 # The problem with synced network clocks (in general)
 
-No matter which clock you end up using, remember that you cannot trust the clock value in a late joining situation. This is because **we cannot ensure that the clock has synced right when we joined**. However, we can paliate this situation with a [`NetworkEventSubsystem`](https://cdn.discordapp.com/attachments/221799385611239424/992481326093574155/NetworkEventSubsystem.zip), in which we would halt our OnRep actions until the clock syncs.
+No matter which clock you end up using, remember that you cannot trust the clock value in a late joining situation. This is because **we cannot ensure that the clock has synced right when we joined**. However, we can paliate this situation with a [`NetworkEventSubsystem`](https://cdn.discordapp.com/attachments/221799385611239424/992481326093574155/NetworkEventSubsystem.zip) (by [Jambax](https://jambax.co.uk/)), in which we would halt our OnRep actions until the clock syncs.
 
 # Conclusion
 
