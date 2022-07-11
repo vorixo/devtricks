@@ -31,7 +31,7 @@ Unreal tries to solve this problem providing the [`GetServerWorldTimeSeconds()`]
 
 For that reason, this post provides a non-destructive implementation you can add to your projects while leaving the old clock intact.
 
-### How does it work?
+## How does it work?
 
 The clock employs [`PostNetInit`](https://docs.unrealengine.com/5.0/en-US/API/Runtime/Engine/GameFramework/AActor/PostNetInit/) in order to create a constant timer that updates the client clock every 10 seconds calling `RequestWorldTime_Internal`. This function sends a server RPC forwarding the client time, which then pongs back to the client alongside the server time to calculate the `ServerWorldTimeDelta` in `ClientUpdateWorldTime` employing a [NTP formula](https://en.wikipedia.org/wiki/Network_Time_Protocol) to adjust the client's local clock appropriately.
 
