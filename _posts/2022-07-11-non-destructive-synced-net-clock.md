@@ -161,6 +161,22 @@ Using the new synced clock static functions is as easy as follows:
 
 ![OnRep approach]({{ '/' | absolute_url }}/assets/images/per-post/netclock/netclock-nodes.jpg){: .align-center}
 
+## Results
+
+After the first sync-up, the new network clock provides a more accurate view of the server time than the native one, reducing drastically the deviation on high ping scenarios. The following example log was recorded on the [Third Person Template](https://docs.unrealengine.com/5.0/en-US/third-person-template-in-unreal-engine/) with the following Network Emulation settings:
+
+- Emulation Target: Everyone
+- Network Emulation Profile: Bad
+
+Results:
+
+| Experiment # | Server time | Old network clock | New network clock |
+|-------|--------|---------|---------|
+| 1 | 8.607961 | 8.257961 | 8.569201 |
+| 2 | 14.769416 | 14.371296 | 14.774051 |
+| 3 | 6.552305 | 6.215758 | 6.513541 |
+| 4 | 4.971255 | 4.673519 | 4.93249 |
+| 5 | 5.075128 | 4.772511 | 5.036363 |
 
 # The problem with synced network clocks (in general)
 
