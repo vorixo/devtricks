@@ -159,7 +159,7 @@ float UMyGameplayStatics::GetServerWorldTimeDelta(UObject* WorldContextObject)
 
 Using the new synced clock static functions is as easy as follows:
 
-![OnRep approach]({{ '/' | absolute_url }}/assets/images/per-post/netclock/netclock-nodes.jpg){: .align-center}
+![Synced clock static functions]({{ '/' | absolute_url }}/assets/images/per-post/netclock/netclock-nodes.jpg){: .align-center}
 
 ## Results
 
@@ -177,6 +177,8 @@ Results:
 | 3 | 6.552305 | 6.215758 | 6.513541 |
 | 4 | 4.971255 | 4.673519 | 4.93249 |
 | 5 | 5.075128 | 4.772511 | 5.036363 |
+
+As seen above, the new network clock is closer to the expected value (server time).
 
 # The problem with synced network clocks (in general)
 
