@@ -99,7 +99,7 @@ void AMyPlayerController::PostNetInit()
 	{
 		FTimerHandle TimerHandle;
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ThisClass::RequestWorldTime_Internal, 10.f, true);
-    RequestWorldTime_Internal();
+		RequestWorldTime_Internal();
 	}
 }
 
