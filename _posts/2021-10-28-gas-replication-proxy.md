@@ -128,12 +128,12 @@ And finally, `OnRep_Controller()`:
 {% highlight c++ %}
 void ARBPlayerCharacter::OnRep_Controller()
 {
+	Super::OnRep_Controller();
 	// Needed in case the PC wasn't valid when we Init-ed the ASC.
 	if (ARBPlayerState* PS = GetPlayerState<ARBPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->RefreshAbilityActorInfo();
 	}
-	Super::OnRep_Controller();
 }
 {% endhighlight %}
 
