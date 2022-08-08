@@ -63,7 +63,7 @@ void PossessedBy(AController* NewController) override;
 // ~ Client - PS Valid  
 void OnRep_PlayerState() override;	
  // ~ Client - PC Valid					            
-void OnRep_Controller() override;						             
+void OnRep_Controller() override;         
 {% endhighlight %}
 
 Within the scope of the functions we ensure the validity of the different components relevant for the initialization of the ASC. First let's start with `PossessedBy`:
@@ -113,6 +113,11 @@ void ARBPlayerCharacter::OnRep_PlayerState()
 			// Some games client initialize another components of the character that use the ASC here
 		}
 	}
+	else
+	{
+		// Solves the data-races of controller/playerstate
+		AbilitySystemComponent->RefreshAbilityActorInfo();
+	}
 }
 {% endhighlight %}
 
@@ -123,12 +128,12 @@ And finally, `OnRep_Controller()`:
 {% highlight c++ %}
 void ARBPlayerCharacter::OnRep_Controller()
 {
+	Super::OnRep_Controller();
 	// Needed in case the PC wasn't valid when we Init-ed the ASC.
 	if (ARBPlayerState* PS = GetPlayerState<ARBPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->RefreshAbilityActorInfo();
 	}
-	Super::OnRep_Controller();
 }
 {% endhighlight %}
 
@@ -136,6 +141,7 @@ This function is a fail-guard to the PlayerController data race we can encounter
 
 The setup isn't very complicated, it is simply very decentralized. I did a [PR](https://github.com/EpicGames/UnrealEngine/pull/8400) recently trying to improve this by overriding `SetPlayerState` instead of `OnRep_PlayerState` and `PossessedBy`. (An upvote in the PR would be dope!!!)
 
+As a final remark, I highly recommend to take a look at the `LyraPawnExtensionComponent` from Lyra to safely initialize your Pawns using an ability component. Their approach catches several use cases that aren't probably observed in this article. Click [here](https://docs.unrealengine.com/5.0/en-US/abilities-in-lyra-in-unreal-engine/#howarelyracharactersinitialized?) for more information.
 
 ## PlayerStates run at a reduced network frequency
 
