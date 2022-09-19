@@ -57,7 +57,7 @@ There are many different exploits that require sanitization if we perform predic
 Note that most of the sanitization approaches noted above can be strategically improved given the context of the videogame. For example a competitive shooter like Valorant or CSGO [might require a more precise (but "expensive") method in order to validate the shoots](https://www.unrealengine.com/en-US/tech-blog/valorant-s-foundation-is-unreal-engine).
 {: .notice--info}
 
-By rewinding the game by the instigator latency time when the server side shoot gets processed, we ensure that the victim is in the same position and rotation where the instigator saw it locally at timestamp *t*, meaning that we can compute precise bounding box computations in the server equivalent to what the instigator visualized on the client in the past time *t*.
+By rewinding the game by the instigator's latency time when processing the server-side shot, we ensure that the victim is at the same position and rotation where the instigator saw it locally at timestamp *t*, meaning that we can compute accurate bounding box computations on the server equivalent to what the instigator viewed locally in the past time *t*.
 
 ![Rewinding a pawn]({{ '/' | absolute_url }}/assets/images/per-post/simple-rewinding/rewind-expl.gif){: .align-center}
 
