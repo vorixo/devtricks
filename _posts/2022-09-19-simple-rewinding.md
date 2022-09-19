@@ -19,21 +19,15 @@ In this writeup we provide a continuation to the [previous article](https://vori
 
 # Introduction
 
-In the previous post we showcased a [ShooterGame exploit](https://vorixo.github.io/devtricks/shootergame-vulnerability/) found by the Unreal community that affected several projects that use ShooterGame as a base. 
+In the previous post we showcased a [ShooterGame exploit](https://vorixo.github.io/devtricks/shootergame-vulnerability/) found by the Unreal community that affected several projects that use ShooterGame as a base. After [some digging](https://twitter.com/flassari/status/1556383864947412994?s=20&t=l-OrgFlE5AybAZlRjclA8g), we found that this same exploit is present in [Lyra](https://docs.unrealengine.com/5.0/en-US/lyra-sample-game-in-unreal-engine/), which was expected, since the sample provides no server validation code in its source code.
 
-After [some digging](https://twitter.com/flassari/status/1556383864947412994?s=20&t=l-OrgFlE5AybAZlRjclA8g), we found that this same exploit is present in [Lyra](https://docs.unrealengine.com/5.0/en-US/lyra-sample-game-in-unreal-engine/), which was expected, since the sample provides no server validation code in its source code.
-
-The article produced several reactions that went in different directions, like: "Is it really a [network vulnerability](https://en.wikipedia.org/wiki/Vulnerability_(computing))?" or "Shall it be fixed?". 
-
-In addition, in my [twitter post](https://twitter.com/vorixo/status/1556251193114071041?s=20&t=KI5WuVOO9A0xcEbpq7qq-Q) I promised a more elaborated solution for shoot validation involving rewinding.
+The article produced several reactions that went in different directions, like: "Is it really a [network vulnerability](https://en.wikipedia.org/wiki/Vulnerability_(computing))?" or "Shall it be fixed?". In addition, in my [twitter post](https://twitter.com/vorixo/status/1556251193114071041?s=20&t=KI5WuVOO9A0xcEbpq7qq-Q) I promised a more elaborated solution for shoot validation involving rewinding.
 
 So... Let's get started! But first, lets clear out the remaining questions.
 
 ## Is it really a network vulnerability?
 
-I agree that I was too catastrophic when deciding the title for the article, as we traditionally understand a network vulnerability as a flaw that directly affects the network, and not the application. 
-
-However, we can classify the issue as a server-side application-level vulnerability according to [ENISA](https://www.enisa.europa.eu/):
+I agree that I was too catastrophic when deciding the title for the article, as we traditionally understand a network vulnerability as a flaw that directly affects the network, and not the application. However, we can classify the issue as a server-side application-level vulnerability according to [ENISA](https://www.enisa.europa.eu/):
 
 > **Vulnerability**: The existence of a weakness, design, or implementation error that can lead to an unexpected, undesirable event ... compromising the security of the computer system, network, application, or protocol involved.
 
@@ -67,7 +61,7 @@ By rewinding the game by the instigator latency time when the server side shoot 
 
 ![Rewinding a pawn]({{ '/' | absolute_url }}/assets/images/per-post/simple-rewinding/rewind-expl.gif){: .align-center}
 
-The above gif ilustrates the problem, the red box showcases where the server saw the pawn, and the white box displays where the client instigator saw it locally. As we can see there is a difference between the server position and the client position. With that said, let's build a rewinding solution that we can use to rewind by *client latency* any movable object in our game.
+The above gif ilustrates the problem, **the red box showcases where the server saw the pawn**, and **the white box displays where the client instigator saw it locally**. As we can see, there is a difference between the server position and the client position. With that said, let's build a rewinding solution that we can use to rewind by *client latency* any movable object in our game.
 
 ## A generic rewinding component
 
