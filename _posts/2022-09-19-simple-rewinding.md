@@ -50,9 +50,9 @@ But first... What is rewinding? As the word suggests, rewinding consists of retu
 Have you ever heard of ping? Latency is the biggest enemy of networked games, since every time we perform a predictive action on our local client, it reaches the server *ping* milliseconds later. For example, many shooters perform predictive shooting, where we don't wait for the server to process our input request, but fire our weapon locally on the client. This provides highly responsive gameplay that our players will love, but opens some room to cheaters.
 
 There are many different exploits that require sanitization if we perform predictive shooting, here are the most popular ones:
-- **Modifying the rate of fire:** This exploit consists on increasing the rate of fire of our weapon, it can be sanitized by calculating the timestamp difference between consecutive shoots canceling those that violate the defined rate of fire.
+- **Modifying the rate of fire:** This exploit consists in increasing the rate of fire of our weapon, it can be sanitized by calculating the timestamp difference between consecutive shoots canceling those that violate the defined rate of fire.
 - **Shooting at impossible angles and locations:** This exploit consists in shooting in directions impossible for our current location and rotation, it can be sanitized by ensuring the client-side shooting direction and location against the server with some tolerance (for ping).
-- **[Modifying the position of our victims to easily kill them](https://vorixo.github.io/devtricks/shootergame-vulnerability/):** As mentioned in the linked article, this exploit consists on modifying the location of an enemy player in our local client so we can easily kill them, it can be sanitized by ensuring that the shoot impact falls within the server side enemy bounding box, accounting with some tolerance (for ping). 
+- **[Modifying the position of our victims to easily kill them](https://vorixo.github.io/devtricks/shootergame-vulnerability/):** As mentioned in the linked article, this exploit consists in modifying the location of an enemy player in our local client so we can easily kill them, it can be sanitized by ensuring that the shoot impact falls within the server side enemy bounding box, accounting with some tolerance (for ping). 
 
 Note that most of the sanitization approaches noted above can be strategically improved given the context of the videogame. For example a competitive shooter like Valorant or CSGO [might require a more precise (but "expensive") method in order to validate the shoots](https://www.unrealengine.com/en-US/tech-blog/valorant-s-foundation-is-unreal-engine).
 {: .notice--info}
@@ -333,7 +333,7 @@ void AShooterWeapon_Instant::ServerNotifyHit_Implementation(const FHitResult& Im
 }
 {% endhighlight %}
 
-In the above code, `AShooterWeapon_Instant::ProcessInstantHit` is called locally, and forwards all the information about the shot to the server, including our synchronized timestamp so we can rewind our victim by that fActor.
+In the above code, `AShooterWeapon_Instant::ProcessInstantHit` is called locally, and forwards all the information about the shot to the server, including our synchronized timestamp so we can rewind our victim by that factor.
 
 With all of this done, you only have to place the rewinding component (`UShooterRewindableComponent`) in all the Actors you wish to rewind (characters, movable platforms, vehicles...) in order to ensure the validity of the predicted shots.
 
