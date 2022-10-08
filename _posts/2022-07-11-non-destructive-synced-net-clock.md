@@ -228,7 +228,6 @@ void AMyPlayerController::ClientUpdateWorldTime_Implementation(float ClientTimes
 	float AdjustedRTT = 0;
 	if (RTTSlidingWindow.Num() == 10)
 	{
-		RTTSlidingWindow.RemoveAt(0);
 		TArray<float> tmp = RTTSlidingWindow;
 		tmp.Sort();
 		for (int i = 1; i < 9; ++i)
@@ -236,6 +235,7 @@ void AMyPlayerController::ClientUpdateWorldTime_Implementation(float ClientTimes
 			AdjustedRTT += tmp[i];
 		}
 		AdjustedRTT /= 8;
+		RTTSlidingWindow.RemoveAt(0);
 	}
 	else
 	{
