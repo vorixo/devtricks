@@ -19,7 +19,7 @@ In this brief but necessary post we explore a non-destructive approach to a bett
 
 # Introduction
 
-Time is very relevant in multiplayer, as it can provide a clear insight of when an event happened. It not only helps to provide a more accurate view of our [stateful systems](https://vorixo.github.io/devtricks/stateful-events-multiplayer/) across the network (when was this object interacted with?), but it is also very significant when it comes to action validation (ie: [rewinding](https://youtu.be/zrIY0eIyqmI?t=2146)).
+Time is very relevant in multiplayer, as it can provide a clear insight of when an event happened. It not only helps to provide a more accurate view of our [stateful systems](https://vorixo.github.io/devtricks/stateful-events-multiplayer/) across the network (when was this object interacted with?), but it is also very significant when it comes to action validation (ie: [rewinding](https://vorixo.github.io/devtricks/simple-rewinding/)).
 
 The main difficulty in this topic is to achieve a Client clock that matches the Server clock as much as possible. With such clock we can calculate the time it takes for an event to reach the server and vice-versa (also known as round-trip time (RTT)).
 
@@ -37,8 +37,8 @@ The new clock employs [`PostNetInit`](https://docs.unrealengine.com/5.0/en-US/AP
 
 ## Implementation
 There are many approaches to implement this clock, in this article I provide two:
-- [Based on shortest round-trip-time](https://vorixo.github.io/devtricks/simple-rewinding/#based-on-shortest-round-trip-time): It reduces the error by an order of magnitude versus the vanilla clock in hazardous conditions. Since it uses thes shortest round-trip time to adjust clocks, the client clock will be based on statistical outliers. This will make the final result less accurate with the benefit of a very simplistic O(1) implementation.
-- [Based on a moving window discarding outliers](https://vorixo.github.io/devtricks/simple-rewinding/#based-on-a-moving-window-discarding-outliers): It reduces the average error versus the shortest round-trip-time approach. To do this, it employs a sliding window to hold the latest _n_ round-trip-times and computes an average over them discarding outliers to compute the "fairest RTT". This algorithm has a higher complexity but provides a more accurate end-result.
+- [Based on shortest round-trip-time](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-shortest-round-trip-time): It reduces the error by an order of magnitude versus the vanilla clock in hazardous conditions. Since it uses thes shortest round-trip time to adjust clocks, the client clock will be based on statistical outliers. This will make the final result less accurate with the benefit of a very simplistic O(1) implementation.
+- [Based on a moving window discarding outliers](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-a-moving-window-discarding-outliers): It reduces the average error versus the shortest round-trip-time approach. To do this, it employs a sliding window to hold the latest _n_ round-trip-times and computes an average over them discarding outliers to compute the "fairest RTT". This algorithm has a higher complexity but provides a more accurate end-result.
 
 ### Based on shortest round-trip-time
 
