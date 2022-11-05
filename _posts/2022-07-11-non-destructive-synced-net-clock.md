@@ -37,8 +37,8 @@ The new clock employs [`PostNetInit`](https://docs.unrealengine.com/5.0/en-US/AP
 
 ## Implementation
 There are many approaches to implement this clock, in this article I provide two:
-- [Based on shortest round-trip-time](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-shortest-round-trip-time): It reduces the error by an order of magnitude versus the vanilla clock in hazardous conditions. Since it uses thes shortest round-trip time to adjust clocks, the client clock will be based on statistical outliers. This will make the final result less accurate with the benefit of a very simplistic O(1) implementation.
-- [Based on a moving window discarding outliers](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-a-moving-window-discarding-outliers): It reduces the average error versus the shortest round-trip-time approach. To do this, it employs a sliding window to hold the latest _n_ round-trip-times and computes an average over them discarding outliers to compute the "fairest RTT". This algorithm has a higher complexity but provides a more accurate end-result.
+- [Based on shortest round-trip-time](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-shortest-round-trip-time): It reduces the error by an order of magnitude versus the vanilla clock in hazardous conditions. In this case, the client clock will be based on statistical outliers, as it uses the shortest round-trip time to adjust clocks. This will make the final result less accurate with the benefit of a very simplistic O(1) implementation.
+- [Based on a circular buffer discarding outliers](https://vorixo.github.io/devtricks/non-destructive-synced-net-clock/#based-on-a-circular-buffer-discarding-outliers): It reduces the average error versus the shortest round-trip-time approach. To do this, it employs a [circular buffer](https://en.wikipedia.org/wiki/Circular_buffer) to hold the latest _n_ round-trip-times and computes an average over them discarding possible outliers to compute the "fairest RTT". This algorithm has a higher complexity but provides a more accurate end-result.
 
 ### Based on shortest round-trip-time
 
@@ -139,7 +139,7 @@ void AMyPlayerController::ServerRequestWorldTime_Implementation(float ClientTime
 }
 {% endhighlight %}
 
-### Based on a moving window discarding outliers
+### Based on a circular buffer discarding outliers
 
 First, we inherit `APlayerController` and add the following in the header file:
 
@@ -162,7 +162,7 @@ protected:
 private:
 
 	float ServerWorldTimeDelta = 0.f;
-	TArray<float> RTTSlidingWindow;
+	TArray<float> RTTCircularBuffer;
 
 public:
 
@@ -224,18 +224,18 @@ void AMyPlayerController::RequestWorldTime_Internal()
 void AMyPlayerController::ClientUpdateWorldTime_Implementation(float ClientTimestamp, float ServerTimestamp)
 {
 	const float RoundTripTime = GetWorld()->GetTimeSeconds() - ClientTimestamp;
-	RTTSlidingWindow.Add(RoundTripTime);
+	RTTCircularBuffer.Add(RoundTripTime);
 	float AdjustedRTT = 0;
-	if (RTTSlidingWindow.Num() == 10)
+	if (RTTCircularBuffer.Num() == 10)
 	{
-		TArray<float> tmp = RTTSlidingWindow;
+		TArray<float> tmp = RTTCircularBuffer;
 		tmp.Sort();
 		for (int i = 1; i < 9; ++i)
 		{
 			AdjustedRTT += tmp[i];
 		}
 		AdjustedRTT /= 8;
-		RTTSlidingWindow.RemoveAt(0);
+		RTTCircularBuffer.RemoveAt(0);
 	}
 	else
 	{
@@ -252,7 +252,7 @@ void AMyPlayerController::ServerRequestWorldTime_Implementation(float ClientTime
 }
 {% endhighlight %}
 
-In this method there are a couple of [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) that have been selected empirically considering the trade-off between performance and accuracy. In this case, our sliding window has 10 slots and we discard the biggest and smallest numbers (20%) from it  as if they were outliers to compute the RTT average. I encourage the reader to tweak these magic numbers until you get your desired results! 
+In this method there are a couple of [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) that have been selected empirically considering the trade-off between performance and accuracy. In this case, our circular buffer has 10 entries and we discard the biggest and smallest numbers (20%) from it (treating them as outliers) to compute the RTT average. I encourage the reader to tweak these magic numbers and the clock update frequency until you get your desired results!
 
 And that's it, with this now you have a more accurate and non-destructive synced network clock.
 
@@ -307,7 +307,7 @@ Results:
 | 4 | 4.971255 | 4.673519 | 0.2977 | 4.93249 | 0.0388 |
 | 5 | 5.075128 | 4.772511 | 0.3026 | 5.036363 | 0.0388 |
 
-| Experiment # | Server time | Vanilla network clock | Vanilla network clock error | Moving window clock | Moving window clock error |
+| Experiment # | Server time | Vanilla network clock | Vanilla network clock error | Circular buffer clock | Circular buffer clock error |
 |-------|--------|---------|---------|---------|---------|
 | 1 | 19.079962 | 18.424429 | 0.6555 | 19.077688 | 0.0023 |
 | 2 | 32.913425 | 32.289417 | 0.6240 | 32.925301 | 0.0119 |
@@ -315,7 +315,7 @@ Results:
 | 4 | 14.840554 | 14.153416 | 0.6871 | 14.856544 | 0.0160 |
 | 5 | 18.089819 | 17.513674 | 0.5761 | 18.087681 | 0.0021 |
 
-As seen above, both new network clocks reports values closer to the expected value (_Server time_).
+As seen above, both new network clocks report values closer to the expected value (_Server time_).
 
 # The problem with synced network clocks (in general)
 
