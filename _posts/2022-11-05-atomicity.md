@@ -33,7 +33,7 @@ However, this method of serializing structs can't ensure atomicity if we introdu
 
 ![Default delta serialization packet loss issue]({{ '/' | absolute_url }}/assets/images/per-post/atomicity/deltaserializationpacketloss.jpg){: .align-center}
 
-In Unreal, we can simulate  packet loss in PIE by enabling and modifying the [network emulation settings](https://docs.unrealengine.com/5.0/en-US/using-network-emulation-in-unreal-engine/). 
+In Unreal Engine, it is possible to simulate  packet loss in PIE by enabling and modifying the [network emulation settings](https://docs.unrealengine.com/5.0/en-US/using-network-emulation-in-unreal-engine/). 
 {: .notice--info}
 
 # Atomic Struct replication
