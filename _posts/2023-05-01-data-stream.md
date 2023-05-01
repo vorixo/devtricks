@@ -3,7 +3,7 @@ layout: single
 title: "Multiplayer data streaming in Unreal Engine"
 excerpt: In this post you'll learn how to stream big quantities of data in Unreal Engine using the RPC system.
 header:
-  teaser: /assets/images/per-post/data-streaming/thumb.jpg
+  teaser: /assets/images/per-post/data-stream/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
@@ -86,7 +86,7 @@ Instead of writing a complicated and involved solution, we want to find one that
 
 By splitting the data into `n` subarrays and sending `n` RPCs, you can ensure that each subarray is small enough to be sent within the maximum limit set by `NetMaxConstructedPartialBunchSizeBytes`.
 
-![Data chunking]({{ '/' | absolute_url }}/assets/images/per-post/data-streaming/ChunkingDiagram.jpg){: .align-center}
+![Data chunking]({{ '/' | absolute_url }}/assets/images/per-post/data-stream/ChunkingDiagram.jpg){: .align-center}
 
 In order to chunk the data and determine the number of RPCs and subarrays needed, we must first determine the size of each data element in our data structure. Once we have this information, we can calculate how many data elements can be sent in each RPC, and then divide the data into appropriately sized subarrays. 
 
