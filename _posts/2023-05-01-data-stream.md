@@ -216,6 +216,8 @@ Hehe, I hope this article helped you to figure out how you can send around great
 
 As a hands-on exercise for the reader I propose you to find a more generic solution using byte arrays (uint8 TArray), my [Network Manager](https://vorixo.github.io/devtricks/network-managers/) article explains how to do this. I'd be happy to know if someone manages to make such implementation!
 
+Also, if you want to learn more about this topic, be sure to check [this wonderful article](https://gafferongames.com/post/sending_large_blocks_of_data/) by [Glenn Fiedler](https://twitter.com/gafferongames), in which a more generic solution using Unreliable RPCs is presented!
+
 As always, if you find anything wrong or have any question, dont doubt to follow and contact me on [twitter](https://twitter.com/vorixo)! ;D
 
 Enjoy, vori.
