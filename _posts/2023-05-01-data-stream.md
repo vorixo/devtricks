@@ -52,7 +52,7 @@ Except... **this won't work** in the majority of the cases when we are dealing w
 
 ## Large bunches
 
-Large data transfers can be a concern when using Unreal Engine's Remote Procedure Call (RPC) system. Unreal Engine employs a mechanism to limit the amount of data that can be sent in a single RPC. The data passed in an RPC is called a "bunch", and Unreal Engine will not send the bunch if it exceeds the maximum limit set in `NetMaxConstructedPartialBunchSizeBytes`.
+Large data transfers can be a concern when using Unreal Engine's Remote Procedure Call (RPC) system. Unreal Engine employs a mechanism to limit the amount of data that can be sent in a single RPC. The data passed in an RPC conforms a "bunch", and Unreal Engine will not send the bunch if it exceeds the maximum limit set in `NetMaxConstructedPartialBunchSizeBytes`.
 
 This limit is enforced by the `IsBunchTooLarge` function, which checks if the bunch size exceeds `NetMaxConstructedPartialBunchSizeBytes` before sending it. If the check fails, the bunch is not sent and an error message is logged: 
 
