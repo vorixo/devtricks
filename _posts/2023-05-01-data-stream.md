@@ -19,7 +19,7 @@ In this article we'll learn how to stream big quantities of data realiably from 
 
 As we saw in a [previous article](https://vorixo.github.io/devtricks/stateful-events-multiplayer/), Unreal Engine diposes of different tools to send data, such as RPCs and replicated variables. As we've studied in the past, each of them have a different purpose:
 - **Replicated variables**: These variables should be set in the server and they will replicate down to the relevant clients following the defined replication condition. Incoming relevant connections will also receive the **state** hold by the replicated variables (if applicable).
-- **RPCs**: There are three types of RPCs depending on the [type of operation](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/RPCs/). They are used for **transient** data as they dont hold state.
+- **RPCs**: There are three types of RPCs depending on the [type of operation](https://docs.unrealengine.com/4.26/en-US/InteractiveExperiences/Networking/Actors/RPCs/). They are used for **transient** data as they don't hold state.
 
 However, there are times in which we just want to send a stream of data to a Client or "upload" something to the Server. For example, downloading or uploading a Save Game file. Save Game files can sometimes get quite heavy and contain great quantities of data, which makes it a perfect candidate for today's article. 
 
@@ -90,7 +90,7 @@ By splitting the data into `n` subarrays and sending `n` RPCs, you can ensure th
 
 In order to chunk the data and determine the number of RPCs and subarrays needed, we must first determine the size of each data element in our data structure. Once we have this information, we can calculate how many data elements can be sent in each RPC, and then divide the data into appropriately sized subarrays. 
 
-However, if your data structure contains another array inside, you need to take into account the **maximum pesimistic size** of the inner array as well (or send it separately). For example, if you have an array of structs, where each member contains another array of floats, you can determine the size of each element in the following way:
+However, if your data structure contains another array inside, you need to take into account the **maximum pessimistic size** of the inner array as well (or send it separately). For example, if you have an array of structs, where each member contains another array of floats, you can determine the size of each element in the following way:
 
 {% highlight c++ %}
 int32 InnerArrayMaxSize = 100; // set the maximum size of the inner array here
@@ -107,7 +107,7 @@ In the example below we will chunk a very simple array (without inner complex da
 void AMyGameMode::SendDataTo(AMyPlayerController* Controller)
 {
 	const int32 ElementSize = sizeof(FMyData);
-	// Here you can set whatever number, the closer to NetMaxConstructedPartialBunchSizeBytes, the tighter, which I dont recommend
+	// Here you can set whatever number, the closer to NetMaxConstructedPartialBunchSizeBytes, the tighter, which I don't recommend
 	const int32 MaxBytesPerRPC = 32 * 1024; // 32KB
 	const int32 MaxElementsPerRPC = MaxBytesPerRPC / StructSize;
 	const int32 ChunksToSend = FMath::CeilToInt(Data.Num() / (float)MaxElementsPerRPC);
@@ -218,6 +218,6 @@ As a hands-on exercise for the reader I propose you to find a more generic solut
 
 Also, if you want to learn more about this topic, be sure to check [this wonderful article](https://gafferongames.com/post/sending_large_blocks_of_data/) by [Glenn Fiedler](https://twitter.com/gafferongames), in which a more generic solution using Unreliable RPCs is presented!
 
-As always, if you find anything wrong or have any question, dont doubt to follow and contact me on [twitter](https://twitter.com/vorixo)! ;D
+As always, if you find anything wrong or have any question, don't doubt to follow and contact me on [twitter](https://twitter.com/vorixo)! ;D
 
 Enjoy, vori.
