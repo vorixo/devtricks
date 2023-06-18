@@ -25,6 +25,9 @@ In our case, atomicity ensures that we can guarantee the client state of a prope
 
 # Default Struct replication
 
+If you are using Iris' replication system in Unreal Engine, structs became atomic! However if you are on Unreal Engine 5.3 or earlier versions of the engine (including UE4) this will still apply.
+{: .notice--info}
+
 Structs are one of the types that do not ensure replication atomicity, since their default serialization (at the date of writing) only replicates the properties that changed, we call this **delta serialization**. This type of serialization reduces the network bandwith when replicating structs, as it serializes a network delta from a base state, as we can see below.
 
 ![Default delta serialization]({{ '/' | absolute_url }}/assets/images/per-post/atomicity/deltaserialization.jpg){: .align-center}
