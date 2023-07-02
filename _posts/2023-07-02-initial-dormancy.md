@@ -71,7 +71,10 @@ void AActor::ForceNetUpdate()
 }
 {% endhighlight %}
 
-So if the Net driver is null at the moment you call `ForceNetUpdate`, which can definitely happen, the Actor will never call `FlushNetDormancy`, causing the Actor to stay in a `DORM_Initial` state. For that reason it is always recommended to **explicitly** call `FlushNetDormancy` when dealing with `DORM_Initial` Actors.
+So, if the `NetDriver` is Null at the moment you call `ForceNetUpdate`*, the Actor will never call `FlushNetDormancy`, causing the Actor to stay in a `DORM_Initial` state. For that reason it is always recommended to **explicitly** call `FlushNetDormancy` when dealing with `DORM_Initial` Actors.
+
+*Worlds don't get a `NetDriver` until [`UWorld::Listen`](https://docs.unrealengine.com/4.26/en-US/API/Runtime/Engine/Engine/UWorld/Listen/) is called.
+{: .notice--info}
 
 # Conclusion
 
