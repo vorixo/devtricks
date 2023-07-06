@@ -79,10 +79,10 @@ naver_site_verification  :
 # Social Sharing
 twitter:
   username               : "vorixo"
+linkedin:
+  username               : "vorixo"
 facebook:
   username               :
-  app_id                 :
-  publisher              :
 og_image                 : "/assets/images/site-teaser.png"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
