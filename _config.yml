@@ -110,13 +110,12 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/vorixo"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/vorixo"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/vorixo"
-
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vorixo"
 
 # Site Footer
 footer:
@@ -124,12 +123,12 @@ footer:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/vorixo"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/vorixo"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/vorixo"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/vorixo"
 
 
 # Reading Files
