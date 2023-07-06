@@ -114,7 +114,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vorixo"
     - label: "LinkedIn"
-      icon: "fab fa-linkedin"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/vorixo"
 
 
@@ -128,7 +128,7 @@ footer:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/vorixo"
     - label: "LinkedIn"
-      icon: "fab fa-linkedin"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/vorixo"
 
 
