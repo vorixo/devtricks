@@ -22,7 +22,3 @@ sidebar:
 ---
 
 This page is under construction...
-
-## Media
-
-<iframe width="1268" height="713" src="https://www.youtube.com/embed/88ZBfIh-jMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
