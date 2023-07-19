@@ -1,5 +1,4 @@
 ---
-layout: single
 permalink: /about/lords-of-the-fallen
 title: Lords of the Fallen
 excerpt: Network Programmer
@@ -7,7 +6,6 @@ identifier: project
 order: 1
 website: https://thelordsofthefallen.com/
 header:
-    image: assets/projects/lords-of-the-fallen-overlay-2.jpg
     teaser: assets/projects/lords-of-the-fallen-teaser.jpg
 sidebar:
   - title: "Roles"

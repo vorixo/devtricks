@@ -15,5 +15,6 @@
       {% include nav_list nav=page.sidebar.nav %}
     {% endif %}
   {% endif %}
+  {% if page.website %}<a href="{{ page.website }}" class="btn btn--primary btn--large">Website</a>{% endif %}
   </div>
 {% endif %}

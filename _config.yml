@@ -273,7 +273,13 @@ defaults:
       toc_label: "Contents"
       toc_icon: "cog"
       toc_sticky: true
-  # portfolio pages
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+  # projects pages
   - scope:
       path: "/_pages/projects/"
       type: pages
