@@ -206,6 +206,54 @@
     }
   }
 
+  .project__name {
+    margin: 0;
+
+    @include breakpoint($large) {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .sidebar .project__name {
+    font-family: $sans-serif;
+    font-size: $type-size-4;
+  }
+
+  .project__bio {
+    margin: 0;
+  
+    @include breakpoint($large) {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .project__studio {
+    margin: 0;
+    text-decoration: underline;
+  
+    @include breakpoint($large) {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  
+    /* unvisited link */
+    a:link {
+      color: $link-color;
+    }
+  
+    /* visited link */
+    a:visited {
+      color: $link-color-visited;
+    }
+  
+    /* mouse over link */
+    a:hover {
+      color: $link-color-hover;
+    }
+  }
+
   @include breakpoint($large) {
     display: block;
   }
