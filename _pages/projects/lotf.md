@@ -1,4 +1,5 @@
 ---
+layout: single
 permalink: /about/lords-of-the-fallen
 title: Lords of the Fallen
 excerpt: Network Programmer
