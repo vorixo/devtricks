@@ -1,0 +1,22 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+{% if paginator %}
+  {% assign pages = paginator.pages %}
+{% else %}
+  {% assign pages = site.pages | sort: "order" %}
+{% endif %}
+
+{% assign entries_layout = page.entries_layout | default: 'grid' %}
+<div class="entries-{{ entries_layout }}">
+{% for page in pages %}
+  {% if page.identifier == 'project' %}
+    {% include archive-single-page.html type=entries_layout %}
+  {% endif %}
+{% endfor %}
+</div>
+
+{% include paginator.html %}
