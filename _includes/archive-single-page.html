@@ -1,0 +1,30 @@
+{% if page.header.teaser %}
+  {% capture teaser %}{{ page.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if page.id %}
+  {% assign title = page.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = page.title %}
+{% endif %}
+
+<div class="{{ include.type | default: 'list' }}__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img src="{{ teaser | relative_url }}" alt="">
+      </div>
+    {% endif %}
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      {% if page.link %}
+        <a href="{{ page.link }}">{{ title }}</a> <a href="{{ page.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+      {% else %}
+        <a href="{{ page.url | relative_url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </h2>
+    {% include page__meta.html type=include.type %}
+    {% if page.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ page.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+  </article>
+</div>
