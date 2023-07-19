@@ -1,12 +1,12 @@
 ---
 permalink: /about/lords-of-the-fallen
 title: Lords of the Fallen
-excerpt: Network Programmer
+excerpt: Hexworks | CI Games
 identifier: project
 order: 1
 website: https://thelordsofthefallen.com/
 header:
-    teaser: assets/projects/lords-of-the-fallen-teaser.jpg
+    teaser: assets/images/projects/lords-fallen-2942480.webp
 sidebar:
   - title: "Roles"
     text: "Network Programmer"
