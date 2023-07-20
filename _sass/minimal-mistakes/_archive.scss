@@ -233,6 +233,18 @@
       border: 1px solid $border-color
     }
   }
+
+  .archive__item-teaser-project {
+    @include breakpoint($small) {
+      max-height: 200px;
+      border: 1px solid $border-color
+    }
+
+    @include breakpoint($medium) {
+      max-height: 300px;
+      border: 1px solid $border-color
+    }
+  }
 }
 
 /*
