@@ -236,6 +236,7 @@
 
   .archive__item-teaser-project {
     @include breakpoint($small) {
+      width: span(4 of 12);
       max-height: 200px;
       border: 1px solid $border-color
     }
