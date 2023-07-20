@@ -10,7 +10,7 @@ layout: archive
   {% assign pages = site.pages | sort: "order" %}
 {% endif %}
 
-{% assign entries_layout = page.entries_layout | default: 'grid' %}
+{% assign entries_layout = page.entries_layout | default: 'grid-projects' %}
 <div class="entries-{{ entries_layout }}">
 {% for page in pages %}
   {% if page.identifier == 'project' %}
