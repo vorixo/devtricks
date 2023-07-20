@@ -242,6 +242,7 @@
     }
 
     @include breakpoint($medium) {
+      width: span(4 of 12);
       max-height: 300px;
       border: 1px solid $border-color
     }
