@@ -3,7 +3,7 @@ layout: single
 title: "Physics Network Prediction in Unreal Engine 5.3 Preview"
 excerpt: In this post we'll see the current state of Physics Network Prediction in UE 5.3 Preview.
 header:
-  teaser: /assets/images/per-post/initial-dormancy/thumb.jpg
+  teaser: /assets/images/per-post/networkpredictionoverview/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
