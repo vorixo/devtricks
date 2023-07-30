@@ -3,7 +3,7 @@ layout: single
 title: "Physics Network Prediction in Unreal Engine 5.3 Preview"
 excerpt: In this post we'll see the current state of Physics Network Prediction in UE 5.3 Preview.
 header:
-  teaser: /assets/images/per-post/networkpredictionoverview/thumb.jpg
+  teaser: /assets/images/per-post/phys-prediction-show/thumb.jpg
 author: Meta
 category: Videogames Development
 tags:
@@ -21,7 +21,7 @@ Wow! I didn't see that coming! Epic Games introduced an **experimental** Physics
 
 In order to activate the feature, open `Project Settings` and within the `Physics Tab`, turn on `Enable Physics Prediction`.
 
-![Network Physics Prediction]({{ '/' | absolute_url }}/assets/images/per-post/networkpredictionoverview/enableit.jpg){: .align-center}
+![Network Physics Prediction]({{ '/' | absolute_url }}/assets/images/per-post/phys-prediction-show/enableit.jpg){: .align-center}
 
 There are other settings you might want to explore!
 
