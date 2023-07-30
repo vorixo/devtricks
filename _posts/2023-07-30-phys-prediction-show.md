@@ -19,7 +19,7 @@ Unreal Engine introduced Physics prediction in 5.3, this post showcases a little
 
 Wow! I didn't see that coming! Epic Games introduced an **experimental** Physics prediction feature in 5.3, so... let's take a look.
 
-In order to activate the feature, open `Project Settings` and within the `Physics Tab`, turn on `Enable Physics Prediction`.
+In order to activate the feature, open `Project Settings` and within the `Physics` tab, turn on `Enable Physics Prediction`.
 
 ![Network Physics Prediction]({{ '/' | absolute_url }}/assets/images/per-post/phys-prediction-show/enableit.jpg){: .align-center}
 
