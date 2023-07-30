@@ -31,8 +31,6 @@ The following video I've recorded showcases the state of the system at the relea
 
 <iframe width="480" height="270" src="https://www.youtube.com/embed/py2WbMj1afw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Hopefully a future me will be able to see in the future a much improved version of what was disaplayed in the video!
-
 # Conclusion
 
 Thanks for watching! 
