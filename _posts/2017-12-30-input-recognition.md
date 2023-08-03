@@ -23,7 +23,7 @@ The way the input works in **Unreal** is by refreshing an **input stack** on the
 
 In terms of responsivity we want the fastest and… of course reliable, why not the player controller? It's an excellent choice in any given case if you pursue the topic of this article. 
 
-There is a common missconception about why using the controller or the [pawn](https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/GameFramework/APawn/){:target="_blank"} for bindings, most of the people, even _internals_, say that general inputs common for all the pawns - such as open a midgame menu or show the scoreboard - should be handled in the controller **in every scenario**. Why? Well, simply because no matter what pawn we are possessing, we want to execute those actions whenever we press those keys!
+There is a common misconception about why using the controller or the [pawn](https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/GameFramework/APawn/){:target="_blank"} for bindings, most of the people, even _internals_, say that general inputs common for all the pawns - such as open a midgame menu or show the scoreboard - should be handled in the controller **in every scenario**. Why? Well, simply because no matter what pawn we are possessing, we want to execute those actions whenever we press those keys!
 
 On the other side, ~~using the pawn as the input binder would be good in a scenario where you have custom controls for each pawn~~. Or at least, that’s what I’ve been saying all this time till I realised about certain problems:
 
