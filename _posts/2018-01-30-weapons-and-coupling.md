@@ -20,11 +20,11 @@ Weapon systems aren't as easy to design as it could seem, they require the team 
 
 # The design is crucial, no matter what
 
-This statement is pretty straight forward, but **doesn't contradict the fact that our code should be ready to handle [extensibility](https://en.wikipedia.org/wiki/Extensibility)** (depending the style of game). That's why I encourage a design based on a **component and data driven** approach, where each component handles individual parts of the full system. That would also be benefitial for future cases, since **reusability** of components would be a thing. 
+This statement is pretty straight forward, but **doesn't contradict the fact that our code should be ready to handle [extensibility](https://en.wikipedia.org/wiki/Extensibility)** (depending the style of game). That's why I encourage a design based on a **component and data driven** approach, where each component handles individual parts of the full system. That would also be beneficial for future cases, since **reusability** of components would be a thing. 
 
 Another big point about why to use components is [cohesion](https://en.wikipedia.org/wiki/Cohesion_(computer_science)). An example would be an "Ammo Component". This component will handle all the single aspect of ammunition, leaving that functionality out of the weapon. If programmed correctly, the weapon will survive with or without an "ammo component" (does the class contains said component? If so, use it). 
 
-Working with components is also benefitial when working on big teams, since the work would be more easily splitted on those components versus every programmer trying to merge the same file.
+Working with components is also beneficial when working on big teams, since the work would be more easily splitted on those components versus every programmer trying to merge the same file.
 
 # The problem - Winding Up and Winding Down
 
@@ -63,7 +63,7 @@ As we can observe there are a lot of parts that will need to be controlled back 
 
   * Player has a responsive sprinting system driven through _Tick_ and a couple booleans, meaning that as soon as the player will be able to sprint, he will do it.
   * The player has equipped a three round burst weapon, meaning that the weapon will take some time to fire the three burst. In this example, clicking once would trigger the complete burst (in a 3 round burst scenario the weapon will shoot three times).
-  * Action: Player holds sprint button and without quit pressing it, presses fire once.
+  * Action: Player holds sprint button and without releasing it, presses fire once.
 
 Expected result:
 
@@ -78,9 +78,9 @@ Expected result:
 
 Knowing this, if we don't follow a good design scheme **we would be creating a circular dependency with every single interactive "weapon" we have in our game**.
 
-To solve this, make all your interactive "weapons" implement common usage [interfaces](https://wiki.unrealengine.com/Interfaces_in_C%2B%2B), by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain.Let's see the benefit of using them:
+To solve this, make all your interactive "weapons" implement common usage [interfaces](https://docs.unrealengine.com/en-US/ProgrammingAndScripting/GameplayArchitecture/Interfaces/), by doing that we will get rid of the necessity of doing long inheritation driven systems hard to mantain. Let's see the benefit of using them:
 
-  * Player doesn't need to know what accesory is controlling, weapon or not.
+  * Player doesn't need to know what accessory is controlling, weapon or not.
   * Player will just execute functions that will retrieve information (it can retrieve void aswell)
 
 General implementation approaches:
