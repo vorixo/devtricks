@@ -63,7 +63,7 @@ As we can observe there are a lot of parts that will need to be controlled back 
 
   * Player has a responsive sprinting system driven through _Tick_ and a couple booleans, meaning that as soon as the player will be able to sprint, he will do it.
   * The player has equipped a three round burst weapon, meaning that the weapon will take some time to fire the three burst. In this example, clicking once would trigger the complete burst (in a 3 round burst scenario the weapon will shoot three times).
-  * Action: Player holds sprint button and without quite pressing it, presses fire once.
+  * Action: Player holds sprint button and without releasing it, presses fire once.
 
 Expected result:
 
