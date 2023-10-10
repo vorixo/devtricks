@@ -6,7 +6,7 @@ identifier: project
 order: 3
 website: https://cpcrulez.fr/GamesTest/77_attempts.htm
 header:
-    teaser: assets/images/projects/77attempts.png
+    teaser: assets/images/projects/77Attempts.png
 sidebar:
   - title: "Roles"
     text: "Code, graphics & music"
