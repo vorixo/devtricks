@@ -32,6 +32,8 @@ With Attempo conveniently on vacation, our hero seizes the opportunity to embark
 
 ![Attempo's henchmen]({{ '/' | absolute_url }}/assets/images/projects/77Attempts/77Enemies.jpg){: .align-center}
 
+If you wish to see more gameplay, click [here](https://youtu.be/lv0hjZbbIfA).
+
 ## An interesting platform
 
 "77 Attempts" was completely built in Z80 Assembly, targeting the Zilog CPU chip that the Amstrad CPC 464 platform provided. The version we worked on counted with a total of 64KB of RAM and its CPU run at 4 MHz, which made the whole experience even more interesting. Some of the features we were forced to implement due to the nature of the platform were:
