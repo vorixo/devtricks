@@ -1,7 +1,7 @@
 ---
 permalink: /about/lords-of-the-fallen
 title: Lords of the Fallen
-excerpt: Hexworks | CI Games
+excerpt: Hexworks, CI Games
 identifier: project
 order: 1
 website: https://thelordsofthefallen.com/
