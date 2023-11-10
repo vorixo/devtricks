@@ -50,15 +50,15 @@ I've also defined other relevant properties for the implementation, such as the 
 {% highlight c++ %}
 protected:
 	UPROPERTY(EditDefaultsOnly, Category="Abilities")
-	TSubclassOf<URBAbilitySystemComponent> AbilitySystemComponentClass;
+	TSubclassOf<UMyAbilitySystemComponent> AbilitySystemComponentClass;
 
 	UPROPERTY(Transient)
-	TObjectPtr<URBAbilitySystemComponent> AbilitySystemComponent = nullptr;
+	TObjectPtr<UMyAbilitySystemComponent> AbilitySystemComponent = nullptr;
 
 private:
 
 	UPROPERTY(Transient, ReplicatedUsing=OnRep_ReplicatedAbilitySystemComponent)
-	TObjectPtr<URBAbilitySystemComponent> ReplicatedAbilitySystemComponent = nullptr;
+	TObjectPtr<UMyAbilitySystemComponent> ReplicatedAbilitySystemComponent = nullptr;
 
 	struct FPendingAttributeReplication
 	{
@@ -103,7 +103,7 @@ void AMyGameplayActor::CreateAbilitySystem()
 	AbilitySystemComponent->RegisterComponent();
 }
 
-void ARBGameplayActor::InitializeAbilitySystem()
+void AMyGameplayActor::InitializeAbilitySystem()
 {
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
