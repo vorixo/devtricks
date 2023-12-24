@@ -242,11 +242,29 @@ void UMyAttributeSet_Health::OnRep_Shield(const FGameplayAttributeData& OldShiel
 
 As we can see, the macro we created calls `SetPendingAttributeFromReplication` we defined in our `AMyGameplayActor` from the Attribute Set `OnRep` functions, which fill our buffer Array `PendingAttributeReplications` which gets consumed in `ApplyPendingAttributesFromReplication`, when the ASC reaches the client in `AMyGameplayActor`.
 
-`ApplyPendingAttributesFromReplication` calls `DeferredSetBaseAttributeValueFromReplication` which will ensure we have the most up to date attribute values on the client.
+`ApplyPendingAttributesFromReplication` calls `DeferredSetBaseAttributeValueFromReplication` which will ensure we have the most up to date attribute values on the client:
+
+{% highlight c++ %}
+void UMyAbilitySystemComponent::DeferredSetBaseAttributeValueFromReplication(const FGameplayAttribute& Attribute, float NewValue)
+{
+	const float OldValue = ActiveGameplayEffects.GetAttributeBaseValue(Attribute);
+	ActiveGameplayEffects.SetAttributeBaseValue(Attribute, NewValue);
+	SetBaseAttributeValueFromReplication(Attribute, NewValue, OldValue);
+	// TODO: You can process deferred delegates here
+}
+
+void UMyAbilitySystemComponent::DeferredSetBaseAttributeValueFromReplication(const FGameplayAttribute& Attribute, const FGameplayAttributeData& NewValue)
+{
+	const float OldValue = ActiveGameplayEffects.GetAttributeBaseValue(Attribute);
+	ActiveGameplayEffects.SetAttributeBaseValue(Attribute, NewValue.GetBaseValue());
+	SetBaseAttributeValueFromReplication(Attribute, NewValue.GetBaseValue(), OldValue);
+	// TODO: You can process deferred delegates here
+}
+{% endhighlight %}
 
 # Conclusion
 
-Thanks for reading! 
+Thanks for reading!
 
 Now you'll have a way to save some memory from your ASC Gameplay Actors! I hope you found this article helpful!
 
