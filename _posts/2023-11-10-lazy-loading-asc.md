@@ -197,7 +197,7 @@ void AMyGameplayActor::SetPendingAttributeFromReplication(const FGameplayAttribu
 }
 {% endhighlight %}
 
-As we can see, if the policy is `Lazy`, the first time we call `GetAbilitySystemComponent()` through any of the ASC API functions, the ASC will get created and initialized. The `PreReplication` function and our proxy `ReplicatedAbilitySystemComponent` variable will make sure `AbilitySystemComponent` will get to the client and Server properly.
+As we can see, if the policy is `Lazy`, the first time we call `GetAbilitySystemComponent()` through any of the ASC API functions, the ASC will get created and initialized. The `PreReplication` overriden function and our proxy `ReplicatedAbilitySystemComponent` variable will make sure `AbilitySystemComponent` will get to the client and Server properly.
 
 ## Pending Attribute Replication
 
