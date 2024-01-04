@@ -101,9 +101,10 @@ AController* UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(AC
 }
 {% endhighlight %}
 
-As we can see, we simply iterate through the controllers of the server world until we find the one matching (so that the stable name matches). Once we do that, we will obtain the server Controller related to the client Controller in client instance.
+As we can see, we simply iterate through the controllers of the server world until we find the one matching (so that the stable name matches). Thus, if we call the function from our client, the function returns the server Controller related to our client Controller.
 
-# How to use
+# A simple example
+
 In the example below, we want to print the server value alongside the client value of Stamina from our CMC.
 
 {% highlight c++ %}
