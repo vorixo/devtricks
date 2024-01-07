@@ -31,7 +31,7 @@ As you can see, the same log entry contains the value of the stamina in the clie
 
 # The implementation
 
-To obtain a Server controller from a client, first we have to find the server world, only existing within the editor context:
+To obtain a Server Player Controller from a client, first we have to find the server world, only existing within the editor context:
 
 {% highlight c++ %}
 UWorld* UMyDevelopmentStatics::FindPlayInEditorAuthorityWorld()
@@ -73,24 +73,23 @@ UWorld* UMyDevelopmentStatics::FindPlayInEditorAuthorityWorld()
 }
 {% endhighlight %}
 
-The function above was conveniently implemented in Lyra, so we can make use of it. The next function will use the previous function to get the Server Controller:
+The function above was conveniently implemented in Lyra, so we can make use of it. The next function will use the previous function to get the Server Player Controller:
 
 {% highlight c++ %}
-AController* UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(AController* ClientController)
+APlayerController* ULyraDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(APlayerController* ClientController)
 {
 #if WITH_EDITOR
-	UWorld* ServerWorld = UMyDevelopmentStatics::FindPlayInEditorAuthorityWorld();
+	UWorld* ServerWorld = ULyraDevelopmentStatics::FindPlayInEditorAuthorityWorld();
 	if (ServerWorld != nullptr)
 	{
-		for( FConstPlayerControllerIterator Iterator = ServerWorld->GetPlayerControllerIterator(); Iterator; ++Iterator )
+		for (FConstPlayerControllerIterator Iterator = ServerWorld->GetPlayerControllerIterator(); Iterator; ++Iterator)
 		{
-			AController* ServerController = Iterator->Get();
+			APlayerController* ServerController = Iterator->Get();
 
-			// Actors with a stable name will have the same name server and client
-			const FString ServerName = *GetNameSafe(ServerController);
-			const FString ClientName = *GetNameSafe(ClientController);
+			const FUniqueNetIdRepl& ServerPlayerUniqueId = ServerController->PlayerState->GetUniqueId();
+			const FUniqueNetIdRepl& ClientPlayerUniqueId = ClientController->PlayerState->GetUniqueId();
 
-			if(ServerName == ClientName)
+			if (ServerPlayerUniqueId == ClientPlayerUniqueId)
 			{
 				return ServerController;
 			}
@@ -101,7 +100,7 @@ AController* UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(AC
 }
 {% endhighlight %}
 
-As we can see, we simply iterate through the controllers of the server world until we find the one matching (so that the stable name matches). Thus, if we call the function from our client, the function returns the server Controller related to our client Controller.
+As we can see, we simply iterate through the player controllers of the server world until we find the one matching (so that the Player UniqueId matches). Thus, if we call the function from our client, the function returns the server Player Controller related to our client Player Controller.
 
 # A simple example
 
@@ -111,9 +110,9 @@ In the example below, we want to print the server value alongside the client val
 // From a client...
 
 float ServerStamina = 0.f;
-if (AController* PlayerController = UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(GetController()))
+if (APlayerController* ServerPlayerController = UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(GetPlayerController()))
 {
-	if( AMyCharacter* ServerPawn = Cast<AMyCharacter>(PlayerController->GetPawn()))
+	if( AMyCharacter* ServerPawn = Cast<AMyCharacter>(ServerPlayerController->GetPawn()))
 	{
 		ServerStamina = ServerPawn->GetMyCharacterMovementComponent()->Stamina;
 	}
