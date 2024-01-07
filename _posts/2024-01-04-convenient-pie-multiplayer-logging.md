@@ -76,10 +76,10 @@ UWorld* UMyDevelopmentStatics::FindPlayInEditorAuthorityWorld()
 The function above was conveniently implemented in Lyra, so we can make use of it. The next function will use the previous function to get the Server Player Controller:
 
 {% highlight c++ %}
-APlayerController* ULyraDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(APlayerController* ClientController)
+APlayerController* UMyDevelopmentStatics::FindPlayInEditorAuthorityPlayerController(APlayerController* ClientController)
 {
 #if WITH_EDITOR
-	UWorld* ServerWorld = ULyraDevelopmentStatics::FindPlayInEditorAuthorityWorld();
+	UWorld* ServerWorld = UMyDevelopmentStatics::FindPlayInEditorAuthorityWorld();
 	if (ServerWorld != nullptr)
 	{
 		for (FConstPlayerControllerIterator Iterator = ServerWorld->GetPlayerControllerIterator(); Iterator; ++Iterator)
