@@ -24,6 +24,8 @@ Taking a cue from Epic and the insights shared by Tranek in the excellent [GASDo
 
 Think of it like this: buildings, trees, and damageable props on standby with a lower cost, only racking up the memory bill when they step into the gameplay spotlight.
 
+But before we start, I would love to thank my dear friend [KaosSpectrum](https://www.thegames.dev/) for his significant research and collaboration on the topic; without him, this wouldn't have been possible.
+
 # The implementation
 
 So... let's take a look on how we can implement this. Bear with me, as Epic hasn't posted this anywhere online, so if you spot any error, feel free to report it!
