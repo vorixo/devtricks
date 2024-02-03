@@ -29,14 +29,14 @@ The following video I've recorded showcases the state of the system at the relea
 
 <iframe width="480" height="270" src="https://www.youtube.com/embed/1jD4WT6wkjw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-At the time of writing, Mover 2.0 is only obtainable through the github version of the engine, using 5.4 or ue5-main.
+**Note:** At the time of writing, Mover 2.0 is only obtainable through the git version of the engine, branch 5.4 or ue5-main.
 {: .notice--info}
 
 ## Additional resources
 
 In the video I mention two resources:
-* Configuration settings for NPP: https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/blob/main/Config/DefaultNetworkPrediction.ini
-* An alternative Movement system implemented with the NPP: https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/tree/main
+* [Configuration settings for NPP.](https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/blob/main/Config/DefaultNetworkPrediction.ini)
+* [An alternative Movement system implemented with the NPP.](https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/tree/main)
 
 # Conclusion
 
