@@ -109,7 +109,7 @@ void AMyGameMode::SendDataTo(AMyPlayerController* Controller)
 	const int32 ElementSize = sizeof(FMyData);
 	// Here you can set whatever number, the closer to NetMaxConstructedPartialBunchSizeBytes, the tighter, which I don't recommend
 	const int32 MaxBytesPerRPC = 32 * 1024; // 32KB
-	const int32 MaxElementsPerRPC = MaxBytesPerRPC / StructSize;
+	const int32 MaxElementsPerRPC = MaxBytesPerRPC / ElementSize;
 	const int32 ChunksToSend = FMath::CeilToInt(Data.Num() / (float)MaxElementsPerRPC);
 	
 	TArray<FMyData> ChunkBuffer;
