@@ -92,6 +92,9 @@ In this function, we are writing to the Archive `Ar` everything we want to repli
 
 `NetSerialize` will be called on the server for serialization, and on the client, for deserialization. We can also detect when we are serializing or deserializing using [`Ar.IsLoading()`](https://docs.unrealengine.com/4.27/en-US/API/Runtime/Core/Serialization/FArchiveState/IsLoading/). Therefore If we wish to reduce the network bandwidth produce by our `NetSerialize`implementation, we can apply lossless and lossy compression techniques.
 
+Note that references to other objects can never be atomic unless those objects are always resolvable on the client.
+{: .notice--info}
+
 # Conclusion
 
 Today we learned the basics of replication atomicity and network serializers, but this is just the beginnning.
