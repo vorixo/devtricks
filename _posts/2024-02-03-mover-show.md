@@ -35,8 +35,8 @@ The following video I've recorded showcases the state of the system at the relea
 ## Additional resources
 
 In the video I mention two resources:
-* [Configuration settings for NPP.](https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/blob/main/Config/DefaultNetworkPrediction.ini)
-* [An alternative Movement system implemented with the NPP.](https://github.com/ElSnaps/NetworkPredictionPlugin-Q3-PMove/tree/main)
+* [Configuration settings for Mover.](https://github.com/daftsoftware/MoverQ3?tab=readme-ov-file#important-notices)
+* [An alternative Movement system implemented with Mover.](https://github.com/daftsoftware/MoverQ3)
 
 # Conclusion
 
