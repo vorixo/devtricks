@@ -49,7 +49,7 @@ Pay close attention to the replication settings, as they will play a relevant ro
 
 And to finish up the setup, let me share with you my root static mesh settings that we use for the physics simulation:
 
-![Root mesh]({{ '/' | absolute_url }}/assets/images/per-post/phys-prediction-userootmeshsettings.jpg){: .align-center}
+![Root mesh]({{ '/' | absolute_url }}/assets/images/per-post/phys-prediction-use/rootmeshsettings.jpg){: .align-center}
 
 Main important points from the image above is that, we need to turn on physics simulation, set the collision channel to something sensitive, and finally, ensure that the `Component Replicates` flag is off, we don't need it, we are replicating the transform of our boulder by other means.
 
