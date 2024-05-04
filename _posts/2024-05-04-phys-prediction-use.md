@@ -428,7 +428,10 @@ If you did everything correctly, now you should have something as follows:
 
 <iframe width="480" height="270" src="https://www.youtube.com/embed/kFtZqNlcg3U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The above video was recorded with average latency everywhere (server and client).
+The above video was recorded with average latency everywhere (server and client). At the end of the video I display the difference between jump inputs being sent through the `NetworkPhysicsComponent`, and Jumps performed only on the client; you can see how the later get corrected, making the local sphere snap back to the ground.
+
+**Note:** The Physics Resimulation replication mode currently has some bugs in PIE, where if you try to add more than one client, it starts behaving erratically.
+{: .notice--info}
 
 ### Implementation details
 
