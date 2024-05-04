@@ -17,7 +17,7 @@ In a [previous article](https://vorixo.github.io/devtricks/phys-prediction-show/
 
 # Introduction
 
-Predicting and correcting physics is one of the most complicated topics when it comes to network prediction. The nature of the complexity comes by the fact that if we hit a chain of physics objects predictively, we'd expect all the physics to react instantaneously, without having to wait for the server. But not only that, these physics objects should smoothly correct their position on the clients if there are incongruences with what the server expects. So you can imagine how difficult this can get with complex physics chain reactions.
+Predicting and correcting physics is one of the most complicated topics when it comes to network prediction. The nature of the complexity comes by the fact that if we hit a chain of physics objects on the client, we'd expect all the physics to react instantaneously, without having to wait for the server. But not only that, these physics objects should smoothly correct their position on the clients if there are incongruences with what the server expects. So you can imagine how difficult this can get with complex physics chain reactions.
 
 Fortunately, Epic has been working lately in a solution for all these problems bundled in their Networked Physics solution. Before digging onto the matter, I strongly recommend everyone to take a look to [this article](https://dev.epicgames.com/documentation/en-us/unreal-engine/networked-physics-overview), where Epic digs further on the different physics replication modes they brought to the engine with this new system.
 
