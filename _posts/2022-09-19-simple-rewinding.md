@@ -345,6 +345,8 @@ So... Are we done? Not really.
 
 Our rewind method is not sufficient, since we are rewinding only the Actor we are shooting at. Ideally we should rewind all potential Actors we might hit in our scene for latency time, so we make sure the client doesn't hit a character through another moving Actor. 
 
+In addition, as [Jay Mattis](https://x.com/braindx) mentions in [his article about lag compensation](https://snapnet.dev/blog/performing-lag-compensation-in-unreal-engine-5/), the Character Movement Component performs extrapolation and smoothing in the simulated proxies. This means that at times, we will see the sim proxy characters in positions that never existed on the server.
+
 However, I'm going to leave the hands-on part of that exercise to you, the reader. I'd like you to research a solution so we can discuss it in [twitter](https://twitter.com/vorixo) together. I think going through this type of thought process can help you learn more intricate problems about network programming in game development and all that it concerns.
 
 This article linked a couple of resources that can help you in your research.
