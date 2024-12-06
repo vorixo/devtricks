@@ -39,7 +39,7 @@ However, that is not the case of `DORM_Initial` Actors, as they will not send an
 
 So shall I simply not use `DORM_Initial`? No, you should! `DORM_Initial` Actors won't be considered for replication at all even under relevancy, and sometimes that can be a huge optimization.
 
-To ensure incoming connections get the new values over `DORM_Initial` Actors, you should call `FlushNetDormancy` on them after updating their properties. This will make the Actor to become `DORM_DormantAll` but only when strictly needed.
+To ensure incoming connections get the new values over `DORM_Initial` Actors, you should call `FlushNetDormancy` on them [before updating their properties](https://dev.epicgames.com/documentation/en-us/unreal-engine/actor-network-dormancy-in-unreal-engine#whentousewakemethods). This will make the Actor to become `DORM_DormantAll` but only when strictly needed.
 
 ![Flush Dormancy node]({{ '/' | absolute_url }}/assets/images/per-post/initial-dormancy/flushdormancynode.jpg){: .align-center}
 
@@ -82,5 +82,7 @@ Thanks for reading!
 
 Let's hope everything is clear! Feel free to reach us out if there are questions! 
 And I encourage every reader to check [WizardCell's articles](https://wizardcell.com/).
+
+If you want to know more about Dormancy, visit [Epic's official documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/actor-network-dormancy-in-unreal-engine)!
 
 Enjoy, [WizardCell](https://twitter.com/wizardcells) and [vori](https://twitter.com/vorixo).
