@@ -21,6 +21,9 @@ Predicting and correcting physics is one of the most complicated topics when it 
 
 Fortunately, Epic has been working lately in a solution for all these problems bundled in their Networked Physics solution. Before digging onto the matter, I strongly recommend everyone to take a look to [this article](https://dev.epicgames.com/documentation/en-us/unreal-engine/networked-physics-overview), where Epic digs further on the different physics replication modes they brought to the engine with this new system.
 
+**Note:** This code is deprecated in modern Unreal Engine versions (UE 5.7 +). Please refer to [this tutorial](https://dev.epicgames.com/community/learning/tutorials/MoBq/unreal-engine-networked-physics-pawn-tutorial) by MBobbo (a key contributor to the system) for the updated implementation.
+{: .notice--info}
+
 # Making a rolling boulder
 
 I decided to make this post as I couldnt find any simple example around the engine on how to use properly the new Networked Physics system. The 'rolling boulder' we are going to create may serve as a "hello world" for those that would like to get introduced in the matter, as this new system can be used to make any type of vehicle or physics controllable object. Because... what's easier than a rolling sphere?
@@ -52,6 +55,9 @@ And to finish up the setup, let me share with you my root static mesh settings t
 ![Root mesh]({{ '/' | absolute_url }}/assets/images/per-post/phys-prediction-use/rootmeshsettings.jpg){: .align-center}
 
 Main important points from the image above is that, we need to turn on physics simulation, set the collision channel to something sensitive, and finally, ensure that the `Component Replicates` flag is off, we don't need it, we are replicating the transform of our boulder by other means.
+
+**Note:** It is highly recommended to raise the replicated movement quantization levels so that the physics replication system will have more data to work on, you can find these settings under Replication -> Advanced.
+{: .notice--info}
 
 ## Coding the physics boulder movement
 
