@@ -44,7 +44,7 @@ This led us to extensively customize Unreal Engine's core systems to achieve bet
 
 My role in the development of Splitgate, among other responsibilities, revolves around the technical leadership of the Map Creator mode, enabling a fully networked building experience and allowing players to publish, manage and share their maps.
 
-<iframe width="480" height="270" src="https://www.youtube.com/embed/NKUPFtZ4S00" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="480" height="270" src="https://www.youtube.com/embed/UJJfKqEi7Ms" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Modern versions of The Lab support prefabs, QOL building tools, environmental and placeable lighting, and material customization, between others. See [here](https://youtu.be/zN5410YsFsI).
 
