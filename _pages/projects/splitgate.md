@@ -1,6 +1,6 @@
 ---
 permalink: /about/splitgate
-title: SPLITGATE\:\ Arena Reloaded
+title: SPLITGATE Arena Reloaded
 excerpt: 1047 Games
 identifier: project
 order: 1
