@@ -24,7 +24,7 @@ sidebar:
 
 ## Overview
 
-## What is Splitgate?
+### What is Splitgate?
 Splitgate is a free-to-play, fast-paced multiplayer arena shooter that features player-controlled portals. 
 
 The game features customizable loadouts, power-ups, power weapons and multiple competitive and casual gamemodes, along with advanced customization options for custom games. SPLITGATE: Arena reloaded also includes a Map Creator mode, allowing players to create their own maps and gameplay experiences.
