@@ -3,7 +3,7 @@ permalink: /about/galaxy-in-turmoil
 title: Galaxy in Turmoil
 excerpt: Frontwire Studios LLC
 identifier: project
-order: 2
+order: 3
 header:
     teaser: assets/images/projects/galaxyturmoil.png
 sidebar:
@@ -12,7 +12,7 @@ sidebar:
   - title: "Studio"
     text: "Frontwire Studios LLC"
   - title: "Date"
-    text: "May 2020 - Present"
+    text: "2016 - 2020"
   - title: "Technologies"
     text: "Unreal Engine 4, C++, Blueprints, git, SVN"
   - title: "Platforms"

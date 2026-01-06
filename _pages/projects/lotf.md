@@ -3,7 +3,7 @@ permalink: /about/lords-of-the-fallen
 title: Lords of the Fallen
 excerpt: Hexworks, CI Games
 identifier: project
-order: 1
+order: 2
 website: https://thelordsofthefallen.com/
 header:
     teaser: assets/images/projects/lords-fallen-2942480.webp
@@ -13,7 +13,7 @@ sidebar:
   - title: "Studio"
     text: "[**HEXWORKS**](http://hexworks.com/) -<br> A [**CI Games**](https://www.cigames.com/en/) Studio"
   - title: "Date"
-    text: "May 2022 - Present"
+    text: "May 2022 - June 2024"
   - title: "Technologies"
     text: "Unreal Engine 5, C++, Blueprints, Plastic SCM, Jira"
   - title: "Platforms"
