@@ -49,12 +49,12 @@ In the Iris replication system, the serialization process follows a very specifi
   2. **IsEqual**: Called during dirty-checking to determine if quantized state changed since last replication. If true, serialization is skipped entirely.
   3. **Serialize**: Takes the quantized "Internal" state and writes it into the bitstream using a [`FNetBitStreamWriter`](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Net/Iris/Public/Iris/Serialization/NetBitStreamWriter.h).
   4. **Deserialize**: Reads the bits from the [`FNetBitStreamReader`](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/Net/Iris/Public/Iris/Serialization/NetBitStreamReader.h) and reconstructs the "Internal" (quantized) state on the receiving end.
-  5. **Dequantize**: Reverses the quantization process, converting the scaled integers back into the original "External" type (like a `FVector`).
+  5. **Dequantize**: Reverses the quantization process, converting the quantized data back into the original "External" types (like a `FVector`).
   6. **Apply**: Serializers that want to be selective about which members to modify in the target instance when applying state should implement `Apply` where the serializer is responsible for setting the members of the target instance.
 
 So... **what is sent over the network?** You send over the network exactly and precisely **what you write in your `FNetBitStreamWriter`** within your `Serialize` function.  
 
-**Note:** Serialize and Deserialize are the only strictly required functions. Quantize and Dequantize are optional unless your "Source" data (like a class) must be converted into a simpler "Internal" POD type for storage. Apply is optional and only used if you need custom logic to write the final value back to the Actor.
+**Note:** Serialize and Deserialize are the only strictly required functions. Quantize and Dequantize are optional unless your "Source" data (like a class) must be converted into a simpler "Internal" POD type for serialization. Apply is optional and only used if you need custom logic to write the final value back to the target.
 {: .notice--info}
 
 # Serializing a struct in Iris
