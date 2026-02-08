@@ -131,7 +131,7 @@ namespace UE::Net
 
 ## Registering the serializer
 
-If we want replication for our type to occour through our custom Iris net serializer, we need to register it to the `FPropertyNetSerializerInfoRegistry` via some macros:
+If we want replication for our type to occur through our custom Iris net serializer, we need to register it to the `FPropertyNetSerializerInfoRegistry` via some macros:
 
 {% highlight c++ %}
 Implementation file (.cpp):
@@ -260,7 +260,7 @@ namespace UE::Net
 }
 {% endhighlight %}
 
-Once it's defined we can start implementing immediately below `UE_NET_IMPLEMENT_SERIALIZER(FMyStructNetSerializer);` each one of our methods, we'll go in the order of operations defined in the above section.
+Once it's defined we can start implementing each one of our methods immediately below `UE_NET_IMPLEMENT_SERIALIZER(FMyStructNetSerializer);`. For that, we'll go in the order of operations defined in the above section.
 
 ### 1. Quantize
 
@@ -508,6 +508,7 @@ void FMyStructNetSerializer::Dequantize(FNetSerializationContext& Context, const
 	}
 	else
 	{
+		// We reset it to 0 intentionally, although we could simply skip it.
 		Target.ImpactPoint = FVector::ZeroVector;
 	}
 	
