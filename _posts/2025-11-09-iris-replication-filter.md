@@ -107,7 +107,7 @@ With this, now you know how to skip or allow replication to specific connections
 
 Besides this post, you can also take a look in these resources/files:
 - `Engine\Plugins\Runtime\ReplicationSystemTestPlugin\Source\Private\Tests\ReplicationSystem\Filtering\TestFiltering.cpp`: A test suite for filtering replication to connections.
-- [Official Epic filtering documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/iris-filtering-in-unreal-engine): Provides more in depth examples as well as other types of filtering - such as groups.
+- [Official Epic filtering documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/iris-filtering-in-unreal-engine): Provides more in depth examples as well as other types of filtering - such as group or dynamic filters.
 
 Finally, I strongly recommend everyone to take a look at Epic's Unreal Fest talk about Iris, where they dive into the design behind the Iris replication system:
 
